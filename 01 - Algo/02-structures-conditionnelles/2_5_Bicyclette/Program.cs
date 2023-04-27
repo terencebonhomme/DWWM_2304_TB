@@ -20,13 +20,13 @@ namespace _2_5_Bicyclette
 
             Console.WriteLine("\"o\" pour \"oui\" sinon n'importe quelle touche");
 
-            Console.WriteLine("Fera t'il beau ?");
-            goodWeather = Console.ReadLine() == "o";
+            Console.Write("Fera t'il beau ? (O/n)");
+            goodWeather = Console.ReadLine() != "n";
 
             if (goodWeather)
             {
-                Console.WriteLine("Le vélo sera t'il en parfait état ?");
-                bicyclePerfectState = Console.ReadLine() == "o";
+                Console.Write("Le vélo sera t'il en parfait état ? (O/n)");
+                bicyclePerfectState = Console.ReadLine() != "n";
 
                 if (bicyclePerfectState)
                 {
@@ -36,8 +36,8 @@ namespace _2_5_Bicyclette
                 {
                     Console.WriteLine("Je ferai réparer mon vélo.");
 
-                    Console.WriteLine("Les réparations seront-elles immédiates ?");
-                    immediateFixes = Console.ReadLine() == "o";
+                    Console.Write("Les réparations seront-elles immédiates ? (O/n)");
+                    immediateFixes = Console.ReadLine() != "n";
 
                     if (immediateFixes)
                     {
@@ -53,8 +53,8 @@ namespace _2_5_Bicyclette
             {
                 Console.WriteLine("J'irai lire un livre.");
 
-                Console.WriteLine("Le tome de Game of Thrones ne sera pas dans le salon ?");
-                GoTInLivingRoom = Console.ReadLine() == "o";
+                Console.Write("Le tome de Game of Thrones ne sera pas dans le salon ? (O/n)");
+                GoTInLivingRoom = Console.ReadLine() != "n";
 
                 if (GoTInLivingRoom)
                 {
@@ -64,8 +64,8 @@ namespace _2_5_Bicyclette
                 {
                     Console.WriteLine("J'irai à la bibliothèque.");
 
-                    Console.WriteLine("Le tome de Game of Thrones sera à la bibliothèque ?");
-                    GoTInLibrary = Console.ReadLine() == "o";
+                    Console.Write("Le tome de Game of Thrones sera à la bibliothèque ? (O/n)");
+                    GoTInLibrary = Console.ReadLine() != "n";
 
                     if (GoTInLibrary)
                     {
