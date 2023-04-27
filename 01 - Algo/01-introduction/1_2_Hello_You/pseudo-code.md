@@ -1,0 +1,18 @@
+﻿L’utilisateur est invité à saisir son prénom dans la console.
+
+Le programme affiche “Bonjour “ suivi du prénom saisi.
+
+
+VARIABLES
+
+	prenom est une chaine de caratères
+
+TRAITEMENT
+
+	ECRIRE "Veuillez saisir votre prénom"
+
+	LIRE prenom
+
+	ECRIRE "Bonjour " , prenom , "."
+
+FIN PROGRAMME
