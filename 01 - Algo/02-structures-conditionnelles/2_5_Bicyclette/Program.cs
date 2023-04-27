@@ -53,7 +53,7 @@ namespace _2_5_Bicyclette
             {
                 Console.WriteLine("J'irai lire un livre.");
 
-                Console.Write("Le tome de Game of Thrones ne sera pas dans le salon ? (O/n)");
+                Console.Write("Le tome de Game of Thrones sera dans le salon ? (O/n)");
                 GoTInLivingRoom = Console.ReadLine() != "n";
 
                 if (GoTInLivingRoom)
