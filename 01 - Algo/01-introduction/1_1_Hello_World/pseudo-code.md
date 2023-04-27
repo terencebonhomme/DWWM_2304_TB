@@ -1,0 +1,3 @@
+﻿AFFICHAGE
+
+ECRIRE "Hello World !"
