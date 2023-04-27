@@ -19,7 +19,7 @@ TRAITEMENT
         ECRIRE "C’est le moment de prendre sa retraite."
       FIN SI
       
-    SINON SI a < aRetraite ALORS
+    SINON SI a < ageRetraite ALORS
 
       ECRIRE "Il vous reste ", ageRetraite - a ; " années avant la retraite."
 
