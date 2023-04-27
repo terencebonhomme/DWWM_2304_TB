@@ -2,7 +2,7 @@
 
     a est un entier
     ageRetraite est un entier
-    estRetraite est un entier
+    estRetraite est un booléen
 
 TRAITEMENT
 
