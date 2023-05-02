@@ -18,23 +18,21 @@
                 input = Console.ReadLine();
             } while (!UInt32.TryParse(input, out a));
 
-            if (a >= retirementAge)
+            if (a == retirementAge)
             {
-                Console.WriteLine("Etes-vous à la retraite ?");
-                isRetired = Console.ReadLine().ToLower() == "o";
-
-                if (isRetired)
-                {
-                    result = "Vous êtes à la retraite depuis " + (a - retirementAge) + " années";
-                }
-                else
-                {
-                    result = "C’est le moment de prendre sa retraite.";
-                }
+                result = "C’est le moment de prendre sa retraite.";
+            }
+            else if (a > retirementAge)
+            {
+                result = "Vous êtes à la retraite depuis " + (a - retirementAge) + " années";            
+            }
+            else if (a < retirementAge)
+            {
+                result = "Il vous reste " + (retirementAge - a) + " années avant la retraite.";
             }
             else
             {
-                result = "Il vous reste " + (retirementAge - a) + " années avant la retraite.";
+                result = "La valeur fournie n’est pas un âge valide.";
             }
 
             // AFFICHAGE
