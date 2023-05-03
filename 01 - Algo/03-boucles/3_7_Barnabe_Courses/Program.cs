@@ -17,7 +17,7 @@
 
             do
             {
-                Console.Write("Saisir le solde : ");
+                Console.Write("Saisir le solde avec une virgule : ");
                 input = Console.ReadLine();
                 inputOk = double.TryParse(input, out cash);
             } while (!inputOk && cash < 0);
