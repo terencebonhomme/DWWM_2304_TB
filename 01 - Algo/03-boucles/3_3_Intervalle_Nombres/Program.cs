@@ -26,7 +26,7 @@
                 inputOk = int.TryParse(input, out b);
             } while (!inputOk);
 
-            result = "" + a;
+            result = "";
 
             for(int i = a; i <= b; i++)
             {
