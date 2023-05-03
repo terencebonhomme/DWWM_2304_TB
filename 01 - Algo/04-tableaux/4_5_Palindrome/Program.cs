@@ -2,6 +2,7 @@
 string result;
 bool isPalindrome;
 int demiLength;
+int i;
 
 isPalindrome = true;
 
@@ -12,20 +13,18 @@ do
 
     demiLength = (int) Math.Floor((input.Length / 2D) - 1);
 
-    for (int i = 0; i < demiLength && isPalindrome; i++)
+    i = 0;
+    while(isPalindrome && i < demiLength)
     {
         if (input[i] != input[input.Length - 2 - i])
         {
             isPalindrome = false;
         }
+
+        i++;
     }
 } while (input == "." || input.Length > 0 && input[input.Length - 1] != '.');
 
-/*if (input.Length == 0)
-{
-    result = "la phrase est vide";
-}
-else */
 if (isPalindrome)
 {
     result = "la chaîne de caractères est un palindrome";
