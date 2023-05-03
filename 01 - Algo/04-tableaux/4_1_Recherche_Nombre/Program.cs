@@ -23,9 +23,10 @@
                 inputOk = int.TryParse(input, out n);
             } while (!inputOk);
 
-            for(i = 0; i < exemple.Length && !found; i++)
+            i = 0;
+            while (!found && i < exemple.Length)
             {
-                if(n == exemple[i])
+                if (n == exemple[i++])
                 {
                     found = true;
                     i--;
