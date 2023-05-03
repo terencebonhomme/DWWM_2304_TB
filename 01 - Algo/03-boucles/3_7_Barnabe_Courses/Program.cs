@@ -24,7 +24,7 @@
 
             if(cash > 0)
             {
-                while (cash > 2)
+                while (cash >= 2.02)
                 {
                     marketNb++;
                     cash = cash / 2 - 1;
