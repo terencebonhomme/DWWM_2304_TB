@@ -20,19 +20,22 @@
                 Console.Write("Saisir le solde : ");
                 input = Console.ReadLine();
                 inputOk = double.TryParse(input, out cash);
-            } while (!inputOk);
+            } while (!inputOk && cash < 0);
 
-            while(cash >= 2)
+            if(cash > 0)
             {
-                marketNb++;
-                cash = cash / 2 - 1;
-            }
+                while (cash > 2)
+                {
+                    marketNb++;
+                    cash = cash / 2 - 1;
+                }
 
-            marketNb++;
+                marketNb++;
+            }
 
             // AFFICHAGE
 
-            Console.WriteLine("Barbabé est passé dans " + marketNb + " magasins");
+            Console.WriteLine("Barbabé est passé dans " + marketNb + " magasin(s)");
         }
     }
 }
