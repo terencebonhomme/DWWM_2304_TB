@@ -7,6 +7,7 @@
             // VARIABLES
 
             int n;
+            int i;
             bool isPrime, inputOk;
             string input;
 
@@ -21,12 +22,20 @@
 
             isPrime = true;
 
-            for(int i = 2; i < n / 2 && isPrime; i++)
+            if(n < 2)
             {
-                if(n % 2 == 0)
+                isPrime = false;
+            }
+
+            i = 2;
+            while (isPrime && i < n / 2)
+            {
+                if(n % i == 0)
                 {
                     isPrime = false;
                 }
+
+                i++;
             }
 
             // AFFICHAGE
