@@ -32,14 +32,12 @@
                 Console.Write("Saisir une lettre : ");
                 letter = (char)Console.Read();
 
-                while (str[indice] != '.' && indice < str.Length)
+                for(int i = 0; i < str.Length && str[i] != '.'; i++)
                 {
-                    if (str[indice] == letter)
+                    if(letter == str[i])
                     {
                         occurenceNb++;
                     }
-
-                    indice++;
                 }
 
                 Console.WriteLine(occurenceNb);
