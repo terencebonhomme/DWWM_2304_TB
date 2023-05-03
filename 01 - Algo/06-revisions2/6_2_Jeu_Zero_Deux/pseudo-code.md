@@ -7,29 +7,29 @@
 
 TRAITEMENT
 
-	
-
 	FAIRE 
 
 		nombreOrdinateur <-- RANDOM
 
-		ECRIRE "Saisir un nombre : "
-		LIRE nombreJoueur
+		FAIRE
+			ECRIRE "Saisir un nombre : "
+			LIRE nombreJoueur
+		TANT QUE nombreJoueur < 0 && nombreJoueur > 2
 
 		SI ABS(nombreOrdinateur - nombreJoueur) = 2 ALORS
 
 			SI nombreOrdinateur > nombreJoueur ALORS
-				scoreOrdinateur <-- scoreOrdinateur + 2
+				INCREMENTER scoreOrdinateur
 			SINON
-				scoreJoueur <-- scoreJoueur + 2
+				INCREMENTER scoreJoueur
 			FIN SI
 
 		SINON SI ABS(nombreOrdinateur - nombreJoueur) = 1 ALORS
 
-			SI nombreOrdinateur > nombreJoueur ALORS
-				scoreOrdinateur <-- scoreOrdinateur + 2
+			SI nombreOrdinateur < nombreJoueur ALORS
+				INCREMENTER scoreOrdinateur
 			SINON
-				scoreJoueur <-- scoreJoueur + 2
+				INCREMENTER scoreJoueur
 			FIN SI
 
 		FIN SI
@@ -39,7 +39,11 @@ TRAITEMENT
 AFFICHAGE
 
 	SI scoreOrdinateur > scoreJoueur ALORS
+
+		ECRIRE "Ordinateur gagne"
 		
 	SINON
+
+		ECRIRE "Joueur gagne"
 
 	FIN SI
