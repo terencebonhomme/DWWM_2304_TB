@@ -15,10 +15,23 @@ namespace tp_yoghurts
             string firstColor;
             int max;
             int test;
-            List<Color> maxList;
-            List<Color> colorChoice;
+
+            List<string> maxName;
+            List<int> maxQuantity;
+            List<int> maxPosition;
+            List<string> colorName;
+            List<int> colorPosition;
+            List<int> colorQuantity;
             List<string> usedColors;
-            List<string> res;
+            List<string> resName;
+
+            int minMaxQuantity;
+            string minMaxName;
+            int minMaxPosition;
+            int tempMaxQuantity;
+            string tempMaxName;
+            int tempMaxPosition;
+            int index;
 
             // TRAITEMENT
 
@@ -44,30 +57,56 @@ namespace tp_yoghurts
             // faire le traitement s'il y a des données
             if (valid)
             {
-                colorChoice = new List<Color>();
+                colorName = new List<string>();
+                colorPosition = new List<int>();
+                colorQuantity = new List<int>();
 
                 // utiliser des valeurs de tests qui ne dépendent pas de l'API
                 if (test == 1) 
                 {
-                    colorChoice.Add(new Color("yellow", 4, 200));
-                    colorChoice.Add(new Color("red", 2, 500));
-                    colorChoice.Add(new Color("orange", 3, 500));
-                    colorChoice.Add(new Color("blue", 0, 500));
-                    colorChoice.Add(new Color("green", 1, 500));
-                    colorChoice.Add(new Color("pink", 5, 200));                    
+                    colorName.Add("yellow");
+                    colorPosition.Add(4);
+                    colorQuantity.Add(200);
+                    colorName.Add("red");
+                    colorPosition.Add(2);
+                    colorQuantity.Add(500);
+                    colorName.Add("orange");
+                    colorPosition.Add(3);
+                    colorQuantity.Add(500);
+                    colorName.Add("blue");
+                    colorPosition.Add(0);
+                    colorQuantity.Add(500);
+                    colorName.Add("green");
+                    colorPosition.Add(1);
+                    colorQuantity.Add(500);
+                    colorName.Add("pink");
+                    colorPosition.Add(5);
+                    colorQuantity.Add(200);
                 }
                 else if (test == 2)
                 {
-                    colorChoice.Add(new Color("yellow", 4, 200));
-                    colorChoice.Add(new Color("red", 2, 500));
-                    colorChoice.Add(new Color("orange", 1, 500));
-                    colorChoice.Add(new Color("blue", 0, 600));
-                    colorChoice.Add(new Color("green", 3, 500));
-                    colorChoice.Add(new Color("pink", 5, 200));
+                    colorName.Add("yellow");
+                    colorPosition.Add(4);
+                    colorQuantity.Add(200);
+                    colorName.Add("red");
+                    colorPosition.Add(2);
+                    colorQuantity.Add(500);
+                    colorName.Add("orange");
+                    colorPosition.Add(1);
+                    colorQuantity.Add(500);
+                    colorName.Add("blue");
+                    colorPosition.Add(0);
+                    colorQuantity.Add(600);
+                    colorName.Add("green");
+                    colorPosition.Add(3);
+                    colorQuantity.Add(500);
+                    colorName.Add("pink");
+                    colorPosition.Add(5);
+                    colorQuantity.Add(200);                    
                 }
                 // calculer les votes si on a des résultats
                 else
-                {
+                {                    
                     // ajouter chaque couleur dès la première occurrence
                     // relever les couleurs utilisées
 
@@ -78,7 +117,9 @@ namespace tp_yoghurts
                         if (!usedColors.Contains(results[i]))                   
                         {
                             usedColors.Add(results[i]);
-                            colorChoice.Add(new Color(results[i], i));
+                            colorName.Add(results[i]);
+                            colorPosition.Add(i);
+                            colorQuantity.Add(0);
                         }                    
                     }
 
@@ -86,11 +127,11 @@ namespace tp_yoghurts
 
                     for (int i = 0; i < results?.Length; i++)
                     {
-                        foreach (Color c in colorChoice)
+                        for (int j = 0; j < colorName.Count; j++)
                         {
-                            if (c.name == results[i])
+                            if (colorName[j] == results[i])
                             {
-                                c.quantity++;
+                                colorQuantity[j]++;
                             }
                         }
                     }
@@ -100,98 +141,157 @@ namespace tp_yoghurts
 
                 if (debug)
                 {
-                    foreach (Color c in colorChoice)
+                    for(int i = 0; i < colorName.Count; i++)
                     {
-                        Console.WriteLine(c.name + " " + c.firstPosition + " " + c.quantity);
+                        Console.WriteLine(colorName[i] + " " + colorPosition[i] + " " + colorQuantity[i]);
                     }
                 }
 
                 // créer une liste de valeurs max
 
                 max = int.MinValue;
-
-                foreach (Color c in colorChoice)
-                {
-                    if (c.quantity > max)
+                
+                for (int i = 0; i < colorName.Count; i++)
+                {;
+                    if (colorQuantity[i] > max)
                     {
-                        max = c.quantity;
+                        max = colorQuantity[i];
                     }
                 }
 
-                maxList = new List<Color>();
+                maxName = new List<string>();
+                maxQuantity = new List<int>();
+                maxPosition = new List<int>();
 
-                foreach (Color c in colorChoice)
+                for (int i = 0; i < colorName.Count; i++)
                 {
-                    if(c.quantity == max)
+                    if (colorQuantity[i] == max)
                     {
-                        maxList.Add(c);
+                        maxName.Add(colorName[i]);
+                        maxQuantity.Add(colorQuantity[i]);
+                        maxPosition.Add(colorPosition[i]);
                     }                    
                 }
 
-                res = new List<string>();
+                resName = new List<string>();
               
                 // trier les valeurs maximales par leur position
-                if (maxList.Count > 1)
+                if (maxName.Count > 1)
                 {
-                    maxList = maxList.OrderBy(c => c.firstPosition).ToList();
+                    index = 0;
 
-                    foreach (Color c in maxList)
+                    for (int i = 0; i < maxPosition.Count; i++)
                     {
-                        res.Add(c.name);
+                        minMaxPosition = maxPosition[i];
+
+                        for (int j = i + 1; j < maxPosition.Count; j++)
+                        {
+                            if (maxPosition[j] < minMaxPosition)
+                            {
+                                minMaxPosition = maxPosition[j];
+                                index = j;
+                            }
+                        }
+
+                        tempMaxQuantity = maxQuantity[i];
+                        maxQuantity[i] = maxQuantity[index];
+                        maxQuantity[index] = tempMaxQuantity;
+
+                        tempMaxName = maxName[i];
+                        maxName[i] = maxName[index];
+                        maxName[index] = tempMaxName;
+
+                        tempMaxPosition = maxPosition[i];
+                        maxPosition[i] = maxPosition[index];
+                        maxPosition[index] = tempMaxPosition;
+                    }
+
+                    for (int i = 0; i < maxName.Count; i++)
+                    {
+                        resName.Add(maxName[i]);
                     }
                 }                
                 // ajouter le max et trier les secondes valeurs maximales par leur position
-                else if ((maxList.Count == 1))
+                else if (maxName.Count == 1)
                 {
                     // ajouter le max
 
                     firstColor = "";                    
                     max = int.MinValue;
 
-                    foreach (Color c in colorChoice)
+                    for(int i = 0; i < colorName.Count; i++)
                     {
-                        if (c.quantity > max)
+                        if (colorQuantity[i] > max)
                         {
-                            max = c.quantity;
-                            firstColor = c.name;
-                        };
+                            max = colorQuantity[i];
+                            firstColor = colorName[i];
+                        }
                     }
 
-                    res.Add(firstColor);                                           
+                    resName.Add(firstColor);                                           
 
                     // comparer si besoin les deuxièmes valeurs maximales
 
                     max = int.MinValue;
 
-                    foreach (Color c in colorChoice)
+                    for (int i = 0; i < colorName.Count; i++)
                     {
-                        if (c.quantity > max && c.name != firstColor)
+                        if (colorQuantity[i] > max && colorName[i] != firstColor)
                         {
-                            max = c.quantity;
+                            max = colorQuantity[i];
                         }
                     }
 
-                    maxList = new List<Color>();
+                    maxName = new List<string>();
+                    maxQuantity = new List<int>();
+                    maxPosition = new List<int>();
 
-                    foreach (Color c in colorChoice)
+                    for (int i = 0; i < colorName.Count; i++)
                     {
-                        if (c.quantity == max)
+                        if (colorQuantity[i] == max)
                         {
-                            maxList.Add(c);
+                            maxName.Add(colorName[i]);
+                            maxQuantity.Add(colorQuantity[i]);
+                            maxPosition.Add(colorPosition[i]);
                         }
                     }
 
-                    maxList = maxList.OrderBy(c => c.firstPosition).ToList();
+                    index = 0;
 
-                    foreach(Color c in maxList)
+                    for (int i = 0; i < maxPosition.Count; i++)
                     {
-                        res.Add(c.name);
+                        minMaxPosition = maxPosition[i];
+
+                        for (int j = i + 1; j < maxPosition.Count; j++)
+                        {
+                            if (maxPosition[j] < minMaxPosition)
+                            {
+                                minMaxPosition = maxPosition[j];
+                                index = j;
+                            }
+                        }
+
+                        tempMaxQuantity = maxQuantity[i];
+                        maxQuantity[i] = maxQuantity[index];
+                        maxQuantity[index] = tempMaxQuantity;
+
+                        tempMaxName = maxName[i];
+                        maxName[i] = maxName[index];
+                        maxName[index] = tempMaxName;
+
+                        tempMaxPosition = maxPosition[i];
+                        maxPosition[i] = maxPosition[index];
+                        maxPosition[index] = tempMaxPosition;
+                    }
+
+                    for (int i = 0; i < maxName.Count; i++)
+                    {
+                        resName.Add(maxName[i]);
                     }
                 }
 
-                // AFFICHAGE
-                Console.WriteLine(res.Count);
-                Console.WriteLine(res.ElementAt(0) + " " + res.ElementAt(1));
+                // AFFICHAGE;
+                Console.WriteLine(resName.ElementAt(0) + " " + resName.ElementAt(1));
             }
             else
             {
