@@ -27,12 +27,12 @@ TRAITEMENT
 
 			totalDes <-- de1 + de2 + de3
 
-			SI totalDes <= 6 ALORS
+			SI totalDes = 3 OU totalDes = 18 ALORS
+				score(numJoueur - 1) <-- score(numJoueur - 1) + 3
+			SINON SI totalDes <= 6 ALORS
 				score(numJoueur - 1) <-- score(numJoueur - 1) + 1
 			SINON SI totalDes >= 12 ALORS
 				score(numJoueur - 1) <-- score(numJoueur - 1) + 2
-			SINON SI totalDes = 3 OU totalDes = 18 ALORS
-				score(numJoueur - 1) <-- score(numJoueur - 1) + 3
 			FIN SI
 
 			SI de1 = de2 OU de2 = de3 OU de1 = de3 ALORS
