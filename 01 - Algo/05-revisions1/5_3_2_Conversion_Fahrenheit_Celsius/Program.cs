@@ -1,4 +1,6 @@
-﻿namespace _5_3_2_Conversion_Fahrenheit_Celsius
+﻿using System.Diagnostics;
+
+namespace _5_3_2_Conversion_Fahrenheit_Celsius
 {
     internal class Program
     {
@@ -9,8 +11,8 @@
             string unit;
             string command;
             string input;
-            double minimum;
-            double maximum;
+            int minimum;
+            int maximum;
             bool inputOk;
 
             // TRAITEMENT
@@ -26,31 +28,32 @@
 
                     do
                     {
-                        Console.Write("Saisir le minimum de la plage de valeurs : ");
+                        Console.Write("Saisir l'entier minimum de la plage de valeurs : ");
                         input = Console.ReadLine() ?? "";
-                        inputOk = double.TryParse(input, out minimum);
+                        inputOk = int.TryParse(input, out minimum);
                     } while (!inputOk);
 
                     do
                     {
-                        Console.Write("Saisir le maximum de la plage de valeurs : ");
+                        Console.Write("Saisir l'entier maximum de la plage de valeurs : ");
                         input = Console.ReadLine() ?? "";
-                        inputOk = double.TryParse(input, out maximum);
+                        inputOk = int.TryParse(input, out maximum);
                     } while (!inputOk);
 
                     if (unit == "F")
                     {
-                        minimum = (minimum - 32) * 5 / 9;
-                        maximum = (maximum - 32) * 5 / 9;
+                        for (int i = minimum; i <= maximum; i++)
+                        {
+                            Console.WriteLine(((maximum - 32) * 5 / 9) + " C\n");
+                        }
                     }
                     else
                     {
-                        minimum = (minimum * 9 / 5) + 32;
-                        maximum = (maximum * 9 / 5) + 32;
+                        for (int i = minimum; i <= maximum; i++)
+                        {
+                            Console.WriteLine(((i * 9 / 5) + 32) + " F\n");
+                        }
                     }
-
-                    Console.WriteLine("[" + String.Format("{0:0.##}", minimum) + ";" 
-                        + String.Format("{0:0.##}", maximum) + "] " + (unit == "C" ? "F" : "C"));
                 }
             } while (command != "quit");
         }
