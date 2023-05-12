@@ -12,6 +12,7 @@
             double price;                        
             double priceCheapest;
             int spacePos;
+            int i;
             bool quit;
             bool parseOk;;
 
@@ -54,12 +55,15 @@
                 {
                     spacePos = -1;
 
-                    for(int i = 0; i < command.Length && spacePos == -1; i++)
+                    i = 0;
+                    while(spacePos == -1 && i < command.Length)
                     {
                         if (command.ElementAt(i) == ' ')
                         {
                             spacePos = i;
                         }
+
+                        i++;
                     }
                     
                     if(spacePos != -1)
