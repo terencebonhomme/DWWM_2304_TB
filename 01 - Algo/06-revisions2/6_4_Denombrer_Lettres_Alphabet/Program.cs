@@ -1,4 +1,6 @@
-﻿namespace _6_4_Denombrer_Lettres_Alphabet
+﻿using System.Globalization;
+
+namespace _6_4_Denombrer_Lettres_Alphabet
 {
     internal class Program
     {
@@ -11,9 +13,17 @@
             int vowelNb;
             int digitNb;
             int digitSum;
+            int j;
             double average;
+            bool isDigit;
+            bool isVowel;
+            string digits;
+            string vowels;
 
             // TRAITEMENT
+
+            digits = "0123456789";
+            vowels = "aeiouy";
 
             digitNb = 0;
             vowelNb = 0;
@@ -21,28 +31,50 @@
             digitSum = 0;            
             average = 0;
                        
-            text = "Lorem ipsum dolor6 sit amet,3 consectetur adip7iscing elit. Inte9ger9 vitae interdum5 magna. Etiam mol9estie 2odio et consequat bibendum.";            
+            text = "Lorem ipsum dolor6 sit amet,3 consectetu4r adip7iscing elit. " +
+                "Inte9ger9 vitae interdum5 magna. Etiam mol9estie 2odio et consequat " +
+                "bibendum.";            
 
             for (int i = 0; i < text.Length; i++)
             {
-                if ("0123456789".Contains(text[i]))
+                isDigit = false;
+
+                j = 0;
+                while(!isDigit && j < digits.Length)
                 {
-                    digitNb++;
-                    digitSum += text[i];
-                } 
-                else if ("aeiouy".Contains(text[i]))
-                {
-                    vowelNb++;
+                    if (text[i] == digits[j])
+                    {
+                        digitNb++;
+                        digitSum += text[i];
+                        isDigit = true;
+                    }
+                    j++;
                 }
-                else
+
+                if (!isDigit)
                 {
-                    consonantNb++;
-                }
+                    isVowel = false;
+
+                    j = 0;
+                    while (!isVowel && j < vowels.Length)
+                    {
+                        if (text[i] == vowels[j])
+                        {
+                            vowelNb++;
+                            isVowel = true;
+                        }
+                        j++;
+                    }
+
+                    if (!isVowel)
+                    {
+                        consonantNb++;
+                    }
+                }                
             }
 
             if(digitNb > 0)
             {
-
                 average = (double) digitSum / digitNb;
             }
 
