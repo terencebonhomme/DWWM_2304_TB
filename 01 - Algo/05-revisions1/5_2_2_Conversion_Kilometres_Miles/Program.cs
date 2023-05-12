@@ -1,4 +1,7 @@
-﻿namespace _5_2_2_Conversion_Kilometres_Miles
+﻿using System.Diagnostics;
+using System.Xml.Linq;
+
+namespace _5_2_2_Conversion_Kilometres_Miles
 {
     internal class Program
     {
@@ -7,58 +10,68 @@
             // VARIABLES
             
             string unit;
-            double value;
+            double distance;
             double result;
+            int spacePos;
+            int i;
             string input;
             bool inputOk;
+            bool parseOk;
 
             // TRAITEMENT
 
-            result = 0;
-
             do
             {
-                Console.Write("Saisir le sens de conversion (km ou mi) : ");
-                unit = Console.ReadLine() ?? "";
-            } while (unit != "km" && unit != "mi" && unit != "");
+                Console.Write("Saisir une valeur entre 0,01 et 1000000 " +
+                    "avec son unité (km ou mi) : ");
+                input = Console.ReadLine() ?? "";
 
-            if(unit == "")
-            {
-                unit = "km";
-            }
+                spacePos = -1;
 
-            do
-            {
-                if(unit == "km")
+                i = 0;
+                while (spacePos == -1 && i < input.Length)
                 {
-                    Console.Write("Saisir une valeur en mi : ");
+                    if (input.ElementAt(i) == ' ')
+                    {
+                        spacePos = i;
+                    }
+                    i++;
+                }
+
+                if (spacePos != -1)
+                {
+                    parseOk = double.TryParse(input.Substring(0, spacePos), out distance);
+                    unit = input.Substring(spacePos + 1);
                 }
                 else
                 {
-                    Console.Write("Saisir une valeur en km : ");
-                }                
-                input = Console.ReadLine() ?? "0";
-                inputOk = double.TryParse(input, out value);
-            } while (!inputOk);
+                    parseOk = double.TryParse(input, out distance);
+                    unit = "km";
+                }
+            } while (
+                (distance < 0.01 || distance > 1_000_000) 
+                || !parseOk 
+                || unit != "km" && unit != "mi"
+            );
 
             if (unit == "mi")
             {
-                result = value / 1.609;
+                result = distance * 1.609;
             }
-            else if (unit == "km")
+            else
             {
-                result = value * 1.609;
+                result = distance / 1.609;                
             }            
 
             // AFFICHAGE
 
             if(unit == "mi")
             {
-                Console.WriteLine(result + " mi");
+                Console.WriteLine(result + " km");
             }
             else
             {
-                Console.WriteLine(result + " km");
+                Console.WriteLine(result + " mi");
             }            
         }
     }
