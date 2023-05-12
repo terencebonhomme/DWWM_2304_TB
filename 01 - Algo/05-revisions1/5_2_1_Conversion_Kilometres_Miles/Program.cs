@@ -21,7 +21,6 @@
                     + " ou q pour quitter : ");
                 input = Console.ReadLine();
                 inputOk = double.TryParse(input, out kmDistance);
-                Console.WriteLine(inputOk);
             } while (input != "q" && !inputOk || (kmDistance < 0.01 || kmDistance > 1_000_000));
 
             if (input != "q")
