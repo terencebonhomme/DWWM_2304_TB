@@ -32,9 +32,9 @@ namespace tp_yoghurts
 
             // réglages
 
-            nbRank = 6;
+            nbRank = 5;
 
-            test = 3;
+            test = 0;
             debug = true;
 
             // récupérer une partie générée par l'API
