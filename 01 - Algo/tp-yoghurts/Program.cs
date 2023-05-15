@@ -32,9 +32,9 @@ namespace tp_yoghurts
 
             // réglages
 
-            nbRank = 2;
+            nbRank = 6;
 
-            test = 0;
+            test = 3;
             debug = true;
 
             // récupérer une partie générée par l'API
@@ -152,11 +152,13 @@ namespace tp_yoghurts
                 ranking = new string[nbRank];
                 rank = 0;
 
-                while(rank < ranking.Length)
+                firstGroupColorPos = new Dictionary<string, int>();
+
+                while (rank < ranking.Length)
                 {
                     firstColorSample = colorQuantity.OrderByDescending(c => c.Value).First();
 
-                    firstGroupColorPos = new Dictionary<string, int>();
+                    firstGroupColorPos.Clear();
 
                     foreach (KeyValuePair<string, int> color in colorQuantity)
                     {
@@ -166,10 +168,14 @@ namespace tp_yoghurts
                         }
                     }
 
-                    firstColor = firstGroupColorPos.OrderBy(c => c.Value).First().Key;
-                    
-                    ranking[rank++] = firstColor;
-                    colorQuantity.Remove(firstColor);
+                    while (firstGroupColorPos.Count > 0)
+                    {
+                        firstColor = firstGroupColorPos.OrderBy(c => c.Value).First().Key;
+                        ranking[rank++] = firstColor;
+
+                        colorQuantity.Remove(firstColor);
+                        firstGroupColorPos.Remove(firstColor);
+                    }   
                 }
 
                 // AFFICHAGE;
