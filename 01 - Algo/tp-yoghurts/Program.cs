@@ -152,11 +152,13 @@ namespace tp_yoghurts
                 ranking = new string[nbRank];
                 rank = 0;
 
-                while(rank < ranking.Length)
+                firstGroupColorPos = new Dictionary<string, int>();
+
+                while (rank < ranking.Length)
                 {
                     firstColorSample = colorQuantity.OrderByDescending(c => c.Value).First();
 
-                    firstGroupColorPos = new Dictionary<string, int>();
+                    firstGroupColorPos.Clear();
 
                     foreach (KeyValuePair<string, int> color in colorQuantity)
                     {
