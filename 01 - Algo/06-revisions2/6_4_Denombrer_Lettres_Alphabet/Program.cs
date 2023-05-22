@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace _6_4_Denombrer_Lettres_Alphabet
 {
@@ -17,23 +18,41 @@ namespace _6_4_Denombrer_Lettres_Alphabet
             double average;
             bool isDigit;
             bool isVowel;
+            bool isConsonant;
             string digits;
             string vowels;
+            string consonants;
 
             // TRAITEMENT
 
             digits = "0123456789";
             vowels = "aeiouy";
+            consonants = "bcdfghjklmnpqrstvwxz";
 
             digitNb = 0;
             vowelNb = 0;
             consonantNb = 0;
             digitSum = 0;            
             average = 0;
-                       
-            text = "Lorem ipsum dolor6 sit amet,3 consectetu4r adip7iscing elit. " +
-                "Inte9ger9 vitae interdum5 magna. Etiam mol9estie 2odio et consequat " +
-                "bibendum.";            
+
+            Console.WriteLine("Saisir un texte :");
+            text = Console.ReadLine() ?? "";
+
+            text = text.ToLower();
+
+            text = text.Replace(" ", "");
+
+            text = Regex.Replace(text, "[äâà]", "a");
+            text = Regex.Replace(text, "[ëêèé]", "e");
+            text = Regex.Replace(text, "[ïî]", "i");
+            text = Regex.Replace(text, "[öô]", "o");
+            text = Regex.Replace(text, "[üû]", "u");
+            text = Regex.Replace(text, "[ÿ]", "y");
+
+            text = text.Replace("ç", "c");
+            text = text.Replace("œ", "oe");
+
+            Console.WriteLine(text);
 
             for (int i = 0; i < text.Length; i++)
             {
@@ -68,7 +87,18 @@ namespace _6_4_Denombrer_Lettres_Alphabet
 
                     if (!isVowel)
                     {
-                        consonantNb++;
+                        isConsonant = false;
+
+                        j = 0;
+                        while (!isConsonant && j < consonants.Length)
+                        {
+                            if (text[i] == consonants[j])
+                            {
+                                consonantNb++;
+                                isConsonant = true;
+                            }
+                            j++;
+                        }                        
                     }
                 }                
             }
