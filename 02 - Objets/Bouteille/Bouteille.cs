@@ -1,6 +1,6 @@
 ﻿namespace Bouteille
 {
-    public class Bouteille : ICloneable
+    public class Bouteille
     {
         public double CapaciteEnCl { get; private set; }
         public double QuantiteEnCl { get; private set; }
@@ -20,17 +20,12 @@
 
         }
 
-        public Bouteille(Bouteille bouteille)
+        public Bouteille(Bouteille bouteilleACopier)
         {
-            Contenu = bouteille.Contenu;
-            EstOuverte = bouteille.EstOuverte;
-            QuantiteEnCl = bouteille.QuantiteEnCl;
-            CapaciteEnCl = bouteille.CapaciteEnCl;
-        }
-
-        public object Clone()
-        {
-            return this.MemberwiseClone();
+            Contenu = bouteilleACopier.Contenu;
+            EstOuverte = bouteilleACopier.EstOuverte;
+            QuantiteEnCl = bouteilleACopier.QuantiteEnCl;
+            CapaciteEnCl = bouteilleACopier.CapaciteEnCl;
         }
 
         public bool Ouvrir()
