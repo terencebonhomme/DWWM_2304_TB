@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Bouteille;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Bouteille.Tests
 {
@@ -85,7 +86,7 @@ namespace Bouteille.Tests
             Assert.IsFalse(eau.Vider(quantiteDeltaEnCl));
             Assert.IsTrue(eau.QuantiteEnCl == quantiteAvantEnCl);
         }
-        
+
         /// <summary>
         /// vider une partie d'une bouteille entamée et ouverte
         /// </summary>
@@ -261,7 +262,7 @@ namespace Bouteille.Tests
 
         /**
          * Vider > bouteille vide
-         */      
+         */
 
         /// <summary>
         /// vider une partie d'une bouteille vide et ouverte
@@ -296,7 +297,7 @@ namespace Bouteille.Tests
             Assert.IsTrue(eau.Vider(quantiteDeltaEnCl));
             Assert.IsFalse(eau.QuantiteEnCl == quantiteAvantEnCl);
         }
-        
+
         /// <summary>
         /// vider une partie négative d'une bouteille vide et ouverte
         /// </summary>
@@ -355,7 +356,7 @@ namespace Bouteille.Tests
             Assert.IsFalse(eau.Remplir(quantiteDeltaEnCl));
             Assert.IsTrue(eau.QuantiteEnCl == quantiteAvantEnCl);
         }
-        
+
         /// <summary>
         /// remplir partiellement une bouteille entamée et ouverte
         /// </summary>

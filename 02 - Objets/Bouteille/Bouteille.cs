@@ -2,17 +2,22 @@
 {
     public class Bouteille
     {
-        public double CapaciteEnCl { get; private set; }
-        public double QuantiteEnCl { get; private set; }
-        public string Contenu { get; private set; }
-        public bool EstOuverte { get; private set; }
+        private double capaciteEnCl;
+        private double quantiteEnCl;
+        private string contenu;
+        private bool estOuverte;
+
+        public double CapaciteEnCl { get => capaciteEnCl; set => capaciteEnCl = value; }
+        public double QuantiteEnCl { get => quantiteEnCl; set => quantiteEnCl = value; }
+        public string Contenu { get => contenu; set => contenu = value; }
+        public bool EstOuverte { get => estOuverte; set => estOuverte = value; }
 
         public Bouteille(string _contenu, bool _estOuverte, double _quantiteEnCl, double _capaciteEnCl)
         {
-            this.Contenu = _contenu;
-            this.EstOuverte = _estOuverte;
-            this.QuantiteEnCl = _quantiteEnCl;
-            this.CapaciteEnCl = _capaciteEnCl;
+            this.contenu = _contenu;
+            this.estOuverte = _estOuverte;
+            this.quantiteEnCl = _quantiteEnCl;
+            this.capaciteEnCl = _capaciteEnCl;
         }
 
         public Bouteille() : this("eau", true, 100, 150)
@@ -22,23 +27,23 @@
 
         public Bouteille(Bouteille bouteilleACopier)
         {
-            Contenu = bouteilleACopier.Contenu;
-            EstOuverte = bouteilleACopier.EstOuverte;
-            QuantiteEnCl = bouteilleACopier.QuantiteEnCl;
-            CapaciteEnCl = bouteilleACopier.CapaciteEnCl;
+            contenu = bouteilleACopier.contenu;
+            estOuverte = bouteilleACopier.estOuverte;
+            quantiteEnCl = bouteilleACopier.quantiteEnCl;
+            capaciteEnCl = bouteilleACopier.capaciteEnCl;
         }
 
         public bool Ouvrir()
         {
             bool ouvertureOK;
 
-            if (EstOuverte)
+            if (estOuverte)
             {
                 ouvertureOK = false;
             }
             else
             {
-                this.EstOuverte = true;
+                this.estOuverte = true;
                 ouvertureOK = true;
             }
 
@@ -49,9 +54,9 @@
         {
             bool fermetureOK;
 
-            if (EstOuverte)
+            if (estOuverte)
             {
-                this.EstOuverte = false;
+                this.estOuverte = false;
                 fermetureOK = true;
             }
             else
@@ -66,11 +71,11 @@
         {
             bool vidageOK;
 
-            if (this.EstOuverte
+            if (this.estOuverte
                 && _quantiteEnCl > 0
-                && this.QuantiteEnCl - _quantiteEnCl >= 0)
+                && this.quantiteEnCl - _quantiteEnCl >= 0)
             {
-                this.QuantiteEnCl -= _quantiteEnCl;
+                this.quantiteEnCl -= _quantiteEnCl;
                 vidageOK = true;
             }
             else
@@ -85,9 +90,9 @@
         {
             bool vidageOK;
 
-            if (this.EstOuverte && this.QuantiteEnCl > 0)
+            if (this.estOuverte && this.quantiteEnCl > 0)
             {
-                this.QuantiteEnCl = 0;
+                this.quantiteEnCl = 0;
                 vidageOK = true;
             }
             else
@@ -102,11 +107,11 @@
         {
             bool remplissageOK;
 
-            if (this.EstOuverte
-                && this.QuantiteEnCl + _quantiteEnCl <= this.CapaciteEnCl
+            if (this.estOuverte
+                && this.quantiteEnCl + _quantiteEnCl <= this.capaciteEnCl
                 && _quantiteEnCl > 0)
             {
-                this.QuantiteEnCl += _quantiteEnCl;
+                this.quantiteEnCl += _quantiteEnCl;
                 remplissageOK = true;
             }
             else
@@ -121,10 +126,10 @@
         {
             bool remplissageOK;
 
-            if (this.EstOuverte
-                && this.QuantiteEnCl < this.CapaciteEnCl)
+            if (this.estOuverte
+                && this.quantiteEnCl < this.capaciteEnCl)
             {
-                this.QuantiteEnCl = this.CapaciteEnCl;
+                this.quantiteEnCl = this.capaciteEnCl;
                 remplissageOK = true;
             }
             else
@@ -137,10 +142,10 @@
 
         public override string ToString()
         {
-            return "\ncapaciteEnCl : " + this.CapaciteEnCl
-                + "\nEstOuverte : " + this.EstOuverte
-                + "\nquantiteEnCl : " + this.QuantiteEnCl
-                + "\ncontenu : " + this.Contenu;
+            return "\ncapaciteEnCl : " + this.capaciteEnCl
+                + "\nEstOuverte : " + this.estOuverte
+                + "\nquantiteEnCl : " + this.quantiteEnCl
+                + "\ncontenu : " + this.contenu;
         }
     }
 }
