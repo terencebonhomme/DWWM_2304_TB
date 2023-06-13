@@ -73,7 +73,7 @@ namespace Fraction.Tests
         [TestMethod()]
         public void ToDisplayTest()
         {
-            Fraction f = new Fraction(120, 150);
+            Fraction f = new Fraction(120, -150);
 
             Assert.IsTrue(f.ToDisplay() == "-4/5");
         }
