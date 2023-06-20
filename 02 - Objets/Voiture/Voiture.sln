@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voiture", "Voiture.csproj", "{96BE7320-0452-4D08-9946-04EC15489551}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoitureTests", "..\VoitureTests\VoitureTests.csproj", "{AA320CCE-3F63-4714-8A8E-DF3E1C04AABC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96BE7320-0452-4D08-9946-04EC15489551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96BE7320-0452-4D08-9946-04EC15489551}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96BE7320-0452-4D08-9946-04EC15489551}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96BE7320-0452-4D08-9946-04EC15489551}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA320CCE-3F63-4714-8A8E-DF3E1C04AABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA320CCE-3F63-4714-8A8E-DF3E1C04AABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA320CCE-3F63-4714-8A8E-DF3E1C04AABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA320CCE-3F63-4714-8A8E-DF3E1C04AABC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CFA2A9E2-18E0-440C-9B14-FF09DC2DF783}
+	EndGlobalSection
+EndGlobal
