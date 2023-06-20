@@ -1,17 +1,15 @@
-﻿using System;
-
-namespace Papillon
+﻿namespace Papillon
 {
     public class Lepidoptere
     {
         Stade stadeCourant;
 
-        public Lepidoptere(Stade _stadeCourant)
+        public Lepidoptere()
         {
-            stadeCourant = _stadeCourant;
+            stadeCourant = new Oeuf();
         }
 
-        public Stade StadeCourant { get => stadeCourant; set => stadeCourant = value; }
+        //public Stade StadeCourant { get => stadeCourant; set => stadeCourant = value; }
 
         public void SeDeplacer()
         {

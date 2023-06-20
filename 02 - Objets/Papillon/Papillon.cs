@@ -15,7 +15,7 @@ namespace Papillon
 
         public override Stade SeMetamorphoser()
         {
-            return new Papillon();
+            return this;
         }
     }
 }

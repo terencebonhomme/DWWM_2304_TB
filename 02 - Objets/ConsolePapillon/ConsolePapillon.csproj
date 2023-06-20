@@ -11,9 +11,6 @@
     <Reference Include="Papillon">
       <HintPath>..\Papillon\bin\Debug\Papillon.dll</HintPath>
     </Reference>
-    <Reference Include="TarteAuxPommes">
-      <HintPath>..\TarteAuxPommes\obj\Debug\TarteAuxPommes.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

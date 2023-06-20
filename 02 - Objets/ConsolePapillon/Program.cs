@@ -9,15 +9,15 @@ namespace ConsolePapillon
             Lepidoptere lepidoptere;
             int i;
 
-            lepidoptere = new Lepidoptere(new Oeuf());
+            lepidoptere = new Lepidoptere();
 
             i = 0;
-            while(i < 5)
+            while (i < 5)
             {
                 lepidoptere.SeDeplacer();
                 lepidoptere.SeMetamorphoser();
                 i++;
-            }                        
+            }
         }
     }
 }
