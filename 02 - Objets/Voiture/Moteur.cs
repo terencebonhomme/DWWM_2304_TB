@@ -15,6 +15,11 @@
             this.enMarche = _enMarche;
         }
 
+        public Moteur(Moteur _moteurACopier)
+        {
+            this.enMarche = _moteurACopier.EnMarche;
+        }
+
         public bool Demarrer()
         {
             bool demarrageOK;

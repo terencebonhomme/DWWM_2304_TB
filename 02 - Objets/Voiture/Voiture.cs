@@ -20,6 +20,12 @@
             };
         }
 
+        public Voiture(Voiture _voitureACopier)
+        {
+            this.sonMoteur = _voitureACopier.SonMoteur;
+            this.ses4Roues = _voitureACopier.Ses4Roues;
+        }
+
         public bool Demarrer()
         {
             bool demarrageOK;

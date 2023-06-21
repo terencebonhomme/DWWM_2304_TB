@@ -61,5 +61,15 @@ namespace Voiture.Tests
             Assert.IsFalse(voiture.Ses4Roues.ElementAt(0).Tourne);
             Assert.IsFalse(voiture.Ses4Roues.ElementAt(1).Tourne);
         }
+
+        [TestMethod()]
+        public void VoitureTest()
+        {
+            Voiture v1 = new Voiture();
+            Voiture v2 = new Voiture(v1);
+
+            Assert.AreNotEqual(v1, v2);
+            Assert.IsFalse(v1.GetHashCode() == v2.GetHashCode());
+        }
     }
 }

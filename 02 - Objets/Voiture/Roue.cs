@@ -30,25 +30,31 @@
             if (!this.tourne)
             {
                 this.tourne = true;
-                return true;
+                tournoiementOK = true;
             }
             else
             {
-                return false;
+                tournoiementOK = false;
             }
+
+            return tournoiementOK;
         }
 
         public bool Stopper()
         {
+            bool stopOK;
+
             if(this.tourne)
             {
                 this.tourne = false;
-                return true;
+                stopOK = true;
             }
             else
             {
-                return false;
+                stopOK = false;
             }
+
+            return stopOK;
         }
     }
 }
