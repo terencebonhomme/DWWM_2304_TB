@@ -13,17 +13,37 @@
         {
             this.sonMoteur = new Moteur();
             this.ses4Roues = new List<Roue>() { 
-                new(), 
-                new(), 
-                new(), 
-                new() 
+                new(Roue.Position.AvantDroite), 
+                new(Roue.Position.AvantGauche), 
+                new(Roue.Position.ArriereDroite), 
+                new(Roue.Position.ArriereGauche) 
             };
         }
 
-        public Voiture(Voiture _voitureACopier)
+        public Voiture(Voiture voitureACopier)
         {
-            this.sonMoteur = _voitureACopier.SonMoteur;
-            this.ses4Roues = _voitureACopier.Ses4Roues;
+            this.sonMoteur = voitureACopier.SonMoteur;
+            this.ses4Roues = voitureACopier.Ses4Roues;
+        }
+
+        public Voiture(string? marque, Moteur sonMoteur, List<Roue> ses4Roues)
+        {
+            if(ses4Roues != null 
+                && ses4Roues.Count == 4 
+                && ses4Roues.Exists(r => r.EmplacementRoue == Roue.Position.AvantDroite)
+                && ses4Roues.Exists(r => r.EmplacementRoue == Roue.Position.AvantGauche)
+                && ses4Roues.Exists(r => r.EmplacementRoue == Roue.Position.ArriereDroite)
+                && ses4Roues.Exists(r => r.EmplacementRoue == Roue.Position.ArriereGauche)
+                )
+            {
+                this.marque = marque;
+                this.sonMoteur = sonMoteur;
+                this.ses4Roues = ses4Roues;
+            }
+            else
+            {
+                throw new Exception("Une voiture doit avoir 4 roues et 1 roue par emplacement!");
+            }
         }
 
         public bool Demarrer()
@@ -47,15 +67,22 @@
         public bool Avancer()
         {
             bool avancementOK;
-            Roue roue1;
-            Roue roue2;
+            Roue? roue1;                       
+            Roue? roue2;
 
-            roue1 = this.ses4Roues.ElementAt(0);
-            roue2 = this.ses4Roues.ElementAt(1);
+            roue2 = this.ses4Roues.Find(r => r.EmplacementRoue == Roue.Position.AvantDroite);
+            roue1 = this.ses4Roues.Find(r => r.EmplacementRoue == Roue.Position.AvantGauche);
 
             if (this.sonMoteur.EnMarche)
-            {
-                avancementOK = this.sonMoteur.EntrainerRoues(roue1, roue2);
+            {               
+                if(roue1 != null && roue2 != null)
+                {
+                    avancementOK = this.sonMoteur.EntrainerRoues(roue1, roue2);
+                }
+                else
+                {
+                    avancementOK = false;
+                }
             }
             else
             {
@@ -68,15 +95,22 @@
         public bool Freiner()
         {
             bool freinageOK;
-            Roue roue1;
-            Roue roue2;
+            Roue? roue1;
+            Roue? roue2;
 
-            roue1 = this.ses4Roues.ElementAt(0);
-            roue2 = this.ses4Roues.ElementAt(1);
+            roue1 = this.ses4Roues.Find(r => r.EmplacementRoue == Roue.Position.AvantGauche);
+            roue2 = this.ses4Roues.Find(r => r.EmplacementRoue == Roue.Position.AvantDroite);            
 
             if (this.sonMoteur.EnMarche)
             {
-                freinageOK = this.sonMoteur.ArreterRoues(roue1, roue2);
+                if (roue1 != null && roue2 != null)
+                {
+                    freinageOK = this.sonMoteur.ArreterRoues(roue1, roue2);
+                }
+                else
+                {
+                    freinageOK = false;
+                }
             }
             else
             {

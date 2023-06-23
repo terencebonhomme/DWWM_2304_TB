@@ -4,24 +4,43 @@
     {
         bool tourne;
         string? dimensionPneu;
+        Position emplacementRoue;
 
         public Roue()
         {
             this.tourne = false;
+            this.emplacementRoue = Roue.Position.AvantDroite;
         }
 
-        public Roue(bool _tourne)
+        public Roue(bool tourne, Position position)
         {
-            this.tourne = _tourne;
+            this.tourne = tourne;
+            this.emplacementRoue = position;
+        }
+
+        public Roue(Position position)
+        {
+            this.tourne = false;
+            this.emplacementRoue = position;
         }
 
         public Roue(Roue roueACopier)
         {
             this.tourne = roueACopier.tourne;
             this.dimensionPneu = roueACopier.dimensionPneu;
+            this.emplacementRoue = roueACopier.emplacementRoue;
+        }
+
+        public enum Position
+        {
+            AvantDroite,
+            AvantGauche,
+            ArriereDroite,
+            ArriereGauche
         }
 
         public bool Tourne { get => tourne; }
+        public Position EmplacementRoue { get => emplacementRoue; }
 
         public bool Tourner()
         {

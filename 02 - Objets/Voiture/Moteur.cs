@@ -10,14 +10,14 @@
         {
             this.enMarche = false;
         }
-        public Moteur(bool _enMarche)
+        public Moteur(bool enMarche)
         {            
-            this.enMarche = _enMarche;
+            this.enMarche = enMarche;
         }
 
-        public Moteur(Moteur _moteurACopier)
+        public Moteur(Moteur moteurACopier)
         {
-            this.enMarche = _moteurACopier.EnMarche;
+            this.enMarche = moteurACopier.EnMarche;
         }
 
         public bool Demarrer()

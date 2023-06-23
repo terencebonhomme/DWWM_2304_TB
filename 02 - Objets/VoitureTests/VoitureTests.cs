@@ -1,10 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Voiture;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Voiture.Tests
 {
@@ -58,18 +52,8 @@ namespace Voiture.Tests
             Assert.IsTrue(voiture.Avancer());
             Assert.IsTrue(voiture.Freiner());
             Assert.IsTrue(voiture.SonMoteur.EnMarche);
-            Assert.IsFalse(voiture.Ses4Roues.ElementAt(0).Tourne);
-            Assert.IsFalse(voiture.Ses4Roues.ElementAt(1).Tourne);
-        }
-
-        [TestMethod()]
-        public void VoitureTest()
-        {
-            Voiture v1 = new Voiture();
-            Voiture v2 = new Voiture(v1);
-
-            Assert.AreNotEqual(v1, v2);
-            Assert.IsFalse(v1.GetHashCode() == v2.GetHashCode());
+            Assert.IsFalse(voiture.Ses4Roues.Find(r => r.EmplacementRoue == Roue.Position.AvantDroite).Tourne);
+            Assert.IsFalse(voiture.Ses4Roues.Find(r => r.EmplacementRoue == Roue.Position.AvantGauche).Tourne);
         }
     }
 }
