@@ -28,26 +28,6 @@
             montantDecouvertAutorise = 100.0;
         }
 
-        public int Comparer(Compte _compte)
-        {
-            int comparaison;
-
-            if (solde > _compte.solde)
-            {
-                comparaison = 1;
-            }
-            else if (solde < _compte.solde)
-            {
-                comparaison = -1;
-            }
-            else
-            {
-                comparaison = 0;
-            }
-
-            return comparaison;
-        }
-
         public bool Debiter(double _montant)
         {
             bool operationOK;
