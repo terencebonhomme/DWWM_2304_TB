@@ -1,6 +1,6 @@
 ﻿namespace CompteBancaire
 {
-    public class Compte
+    public class Compte : IComparable
     {
         double montantDecouvertAutorise;
         string nomProprietaire;
@@ -90,6 +90,21 @@
             }
 
             return operationOK;
+        }
+
+        public int CompareTo(object? obj)
+        {
+            if (obj == null) return 1;
+
+            Compte autreCompte = obj as Compte;
+            if (autreCompte != null)
+            {
+                return this.solde.CompareTo(autreCompte.solde);
+            }
+            else
+            {
+                throw new ArgumentException("Objet n'est pas un Compte");
+            }
         }
     }
 }
