@@ -22,7 +22,10 @@
 
         public Compte()
         {
+            numero = 0;
             nomProprietaire = "";
+            solde = 0.0;
+            montantDecouvertAutorise = 100.0;
         }
 
         public int Comparer(Compte _compte)
