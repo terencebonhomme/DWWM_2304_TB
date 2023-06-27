@@ -51,7 +51,7 @@
         /// <summary>
         /// afficher une fraction réduite avec un denominateur positif
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string d'une fraction réduite avec un denominateur positif</returns>
         public override string ToString()
         {
             this.Reduire();
@@ -165,7 +165,7 @@
         /// <summary>
         /// avoir la valeur décimale
         /// </summary>
-        /// <returns></returns>
+        /// <returns>double avec la valeur décimale de la fraction</returns>
         private double GetValue()
         {
             return (double) this.numerateur / this.denominateur;
@@ -175,7 +175,7 @@
         /// additionner une autre fraction
         /// </summary>
         /// <param name="_autreFraction"></param>
-        /// <returns></returns>
+        /// <returns>Fraction qui est le résultat d'une addition</returns>
         public Fraction Plus(Fraction _autreFraction)
         {
             int resNumerateur = this.numerateur * _autreFraction.denominateur + _autreFraction.numerateur * this.denominateur;
@@ -192,7 +192,7 @@
         /// soustraire une autre fraction
         /// </summary>
         /// <param name="_autreFraction"></param>
-        /// <returns></returns>
+        /// <returns>Fraction qui est le résultat d'une soustraction</returns>
         public Fraction Moins(Fraction _autreFraction)
         {
             Fraction fraction = new Fraction(_autreFraction);
@@ -206,7 +206,7 @@
         /// multiplier par une autre fraction
         /// </summary>
         /// <param name="_autreFraction"></param>
-        /// <returns></returns>
+        /// <returns>Fraction qui est le résultat d'une multiplication</returns>
         public Fraction Multiplie(Fraction _autreFraction)
         {
             Fraction fraction;
@@ -225,7 +225,7 @@
         /// diviser par une autre fraction
         /// </summary>
         /// <param name="_autreFraction"></param>
-        /// <returns></returns>
+        /// <returns>Fraction qui est le résultat d'une division</returns>
         public Fraction Divise(Fraction _autreFraction)
         {
             Fraction fraction = new Fraction(_autreFraction);
