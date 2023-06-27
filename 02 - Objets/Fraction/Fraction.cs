@@ -144,11 +144,6 @@
             int pgcd = this.GetPgcd();
             this.numerateur = this.numerateur / pgcd;
             this.denominateur = this.denominateur / pgcd;
-
-            if (this.numerateur == 0)
-            {
-                throw new DivideByZeroException();
-            }
         }
 
         /// <summary>
@@ -401,7 +396,7 @@
         }
 
         /// <summary>
-        /// opérateur pour d'inversion une fraction
+        /// opérateur d'inversion une fraction
         /// </summary>
         /// <param name="a"></param>
         /// <returns></returns>
