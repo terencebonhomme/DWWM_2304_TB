@@ -149,11 +149,6 @@
 
         public Fraction Divise(Fraction _autreFraction)
         {
-            if (_autreFraction.denominateur == 0)
-            {
-                throw new DivideByZeroException();
-            }
-
             _autreFraction.Inverse();
 
             this.Multiplie(_autreFraction);
