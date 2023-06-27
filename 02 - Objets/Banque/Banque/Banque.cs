@@ -18,7 +18,7 @@ namespace Banque
     {
         private string nom;
         private string ville;
-        public List<Compte> mesComptes;
+        private List<Compte> mesComptes;
 
         public Banque()
         {
