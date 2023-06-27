@@ -216,5 +216,11 @@
         {
             return !a.EgalA(b);
         }
+
+        public static Fraction operator !(Fraction a)
+        {
+            a.Inverse();
+            return a;
+        }
     }
 }
