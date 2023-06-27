@@ -12,20 +12,7 @@
             Fraction fb = new Fraction(17, 5);
             Fraction fc = new Fraction(17, 8);
 
-            //Fraction fa = new Fraction(2, 4);
-            //Fraction fb = new Fraction(1, 2);
-
-            //Console.WriteLine(fc);
-            
-            Console.WriteLine(fb.Divise(fc));
-
-            //Console.WriteLine("test");
-            //Console.WriteLine(fa.GetPgcd(fb));
-            //Console.WriteLine(fa.Plus(fb).ToString());
-            //Console.WriteLine(f4.Numerateur);
-            //Console.WriteLine(f4.Denominateur);
-            //Console.WriteLine(f1.);
-
+            Console.WriteLine(new Fraction(16, 7) < new Fraction(17, 7));
         }
     }
 }

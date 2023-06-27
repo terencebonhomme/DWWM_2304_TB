@@ -14,6 +14,11 @@
 
         public Fraction(int _numerateur, int _denominateur)
         {
+            if(_denominateur == 0)
+            {
+                throw new DivideByZeroException();
+            }
+
             this.numerateur = _numerateur;
             this.denominateur = _denominateur;
         }
@@ -58,6 +63,11 @@
             return this.GetValue() > autreFraction.GetValue();            
         }
 
+        public bool InferieurA(Fraction autreFraction)
+        {
+            return this.GetValue() < autreFraction.GetValue();
+        }
+
         public bool EgalA(Fraction autreFraction)
         {
             return this.GetValue() == autreFraction.GetValue();
@@ -99,7 +109,7 @@
             return pgcd;
         }      
 
-        public double GetValue()
+        private double GetValue()
         {
             return (double) this.numerateur / this.denominateur;
         }
@@ -124,11 +134,13 @@
         }
 
         public Fraction Multiplie(Fraction _autreFraction)
-        {          
+        {
+            Fraction res;
+
             this.numerateur *= _autreFraction.numerateur;
             this.denominateur *= _autreFraction.denominateur;
 
-            Fraction res = new Fraction(this.numerateur, this.denominateur);
+            res = new Fraction(this.numerateur, this.denominateur);
 
             res.Reduire();
 
@@ -137,11 +149,77 @@
 
         public Fraction Divise(Fraction _autreFraction)
         {
+            if (_autreFraction.denominateur == 0)
+            {
+                throw new DivideByZeroException();
+            }
+
             _autreFraction.Inverse();
 
             this.Multiplie(_autreFraction);
 
             return new Fraction(this.numerateur, this.denominateur);
+        }
+
+        public static Fraction operator +(Fraction a, Fraction b)
+        {
+            return a.Plus(b);
+        }
+
+        public static Fraction operator -(Fraction a, Fraction b)
+        {
+            return a.Moins(b);
+        }
+
+        public static Fraction operator *(Fraction a, Fraction b)
+        {
+            return a.Multiplie(b);
+        }
+
+        public static Fraction operator /(Fraction a, Fraction b)
+        {
+            return a.Divise(b);
+        }
+
+        public static Fraction operator +(Fraction a)
+        {
+            return a;
+        }
+
+        public static Fraction operator -(Fraction a)
+        {
+            a.Oppose();
+            return a;
+        }
+
+        public static bool operator >(Fraction a, Fraction b)
+        {
+            return a.SuperieurA(b);
+        }
+
+        public static bool operator >=(Fraction a, Fraction b)
+        {
+            return a.SuperieurA(b) || a.EgalA(b);
+        }
+
+        public static bool operator <(Fraction a, Fraction b)
+        {
+            return a.InferieurA(b);
+        }
+
+        public static bool operator <=(Fraction a, Fraction b)
+        {
+            return a.SuperieurA(b) || a.EgalA(b);
+        }
+
+        public static bool operator ==(Fraction a, Fraction b)
+        {
+            return a.EgalA(b);
+        }
+
+        public static bool operator !=(Fraction a, Fraction b)
+        {
+            return !a.EgalA(b);
         }
     }
 }
