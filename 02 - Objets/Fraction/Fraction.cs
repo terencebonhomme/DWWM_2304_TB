@@ -30,6 +30,12 @@
 
             this.numerateur = _numerateur;
             this.denominateur = _denominateur;
+
+            if (this.denominateur < 0)
+            {
+                this.numerateur *= -1;
+                this.denominateur *= -1;
+            }
         }
 
         /// <summary>
@@ -49,20 +55,25 @@
         }
 
         /// <summary>
-        /// afficher une fraction réduite avec un denominateur positif
+        /// afficher une fraction réduite
         /// </summary>
-        /// <returns>string d'une fraction réduite avec un denominateur positif</returns>
+        /// <returns>string d'une fraction réduite</returns>
         public override string ToString()
         {
+            string str;
+
             this.Reduire();
 
-            if(this.Denominateur < 0)
+            if(this.denominateur == 1)
             {
-                this.numerateur *= -1;
-                this.denominateur *= -1;
+                str = "" + this.numerateur;
+            }
+            else
+            {
+                str = this.numerateur + "/" + this.denominateur;
             }
 
-            return this.numerateur + "/" + this.denominateur;
+            return str;
         }
 
         /// <summary>
@@ -87,6 +98,12 @@
             int temp = this.numerateur;
             this.numerateur = this.denominateur;
             this.denominateur = temp;
+
+            if (this.denominateur < 0)
+            {
+                this.numerateur *= -1;
+                this.denominateur *= -1;
+            }
         }
 
         /// <summary>
@@ -127,6 +144,11 @@
             int pgcd = this.GetPgcd();
             this.numerateur = this.numerateur / pgcd;
             this.denominateur = this.denominateur / pgcd;
+
+            if (this.numerateur == 0)
+            {
+                throw new DivideByZeroException();
+            }
         }
 
         /// <summary>
