@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Banque
+﻿namespace Banque
 {
     ///////////////////////////////////////////////////////////
     //  Banque.cs
@@ -22,22 +16,26 @@ namespace Banque
 
         public Banque()
         {
-
+            nom = "";
+            ville = "";
+            mesComptes = new List<Compte>();
         }
 
-        /// 
-        /// <param name="_ville"></param>
+        ///         
         /// <param name="_nom"></param>
-        public Banque(string _ville, string _nom)
+        /// <param name="_ville"></param>
+        public Banque(string _nom, string _ville)
         {
-
+            nom = _nom;
+            ville = _ville;
+            mesComptes = new List<Compte>();
         }
 
         /// 
-        /// <param name="unCompte"></param>
-        private void AjouteCompte(Compte unCompte)
+        /// <param name="_unCompte"></param>
+        private void AjouteCompte(Compte _unCompte)
         {
-
+            mesComptes.Add(_unCompte);
         }
 
         /// 
@@ -45,10 +43,51 @@ namespace Banque
         /// <param name="_solde"></param>
         /// <param name="_nom"></param>
         /// <param name="_num"></param>
-        public void AjouteCompte(int _decouvertAutorise, int _solde, string _nom, int _num)
+        public void AjouteCompte(int _num, string _nom, double _solde, double _decouvertAutorise)
         {
-
+            mesComptes.Add(new Compte(_num, _nom, _solde, _decouvertAutorise));
         }
 
+        public Compte CompteSup()
+        {
+            Compte compteAvecSoldeMax = mesComptes.ElementAt(0);
+
+            foreach (Compte compte in mesComptes)
+            {
+                if(compte.Solde > compteAvecSoldeMax.Solde)
+                {
+                    compteAvecSoldeMax = compte;
+                }
+            }
+
+            return compteAvecSoldeMax;
+        }
+
+        public Compte? RendCompte(int _numero)
+        {
+            foreach (Compte compte in mesComptes)
+            {
+                if (compte.Numero == _numero)
+                {
+                    return compte;
+                }
+            }
+
+            return null;
+        }
+
+        public override string ToString()
+        {
+            string str = "nom : " + nom + "\nville : " + ville + "\nmes comptes : ";
+
+            foreach(Compte compte in mesComptes)
+            {
+                str += "\n" + compte.ToString();
+            }
+
+            str += "\n---";
+
+            return str;
+        }
     }//end Banque
 }

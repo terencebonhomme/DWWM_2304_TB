@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Banque
+﻿namespace Banque
 {
     ///////////////////////////////////////////////////////////
     //  Compte.cs
@@ -16,78 +10,101 @@ namespace Banque
 
     public class Compte
     {
-        private double decouvertAutorise;
-        private string nom;
         private int numero;
+        private string nom;
         private double solde;
+        private double decouvertAutorise;
+
+        public int Numero
+        {
+            get { return numero; }
+        }
+
+        public double Solde
+        {
+            get { return solde; }
+        }
 
         public Compte()
         {
-
+            numero = 0;
+            nom = "";
+            solde = 0.00;
+            decouvertAutorise = 0.00;
         }
 
-        /// 
-        /// <param name="_decouvertAutorise"></param>
-        /// <param name="_solde"></param>
-        /// <param name="_nom"></param>
         /// <param name="_numero"></param>
-        public Compte(double _decouvertAutorise, int _solde, string _nom, int _numero)
+        /// <param name="_nom"></param>
+        /// <param name="_solde"></param>
+        /// <param name="_decouvertAutorise"></param>
+        public Compte(int _numero, string _nom, double _solde, double _decouvertAutorise)
         {
-
-        }
-
-        public Compte CompteSup()
-        {
-
-            return null;
+            numero = _numero;
+            nom = _nom;
+            solde = _solde;
+            decouvertAutorise = _decouvertAutorise;
         }
 
         /// 
         /// <param name="_montant"></param>
         public void Crediter(double _montant)
         {
-
+            if (_montant > 0.00)
+            {
+                solde += _montant;
+            }
         }
 
         /// 
         /// <param name="_montant"></param>
         public bool Debiter(double _montant)
         {
+            bool debitOK = false;
 
-            return false;
-        }
+            if(_montant > 0.00 && solde + decouvertAutorise >= _montant)
+            {
+                solde -= _montant;
+                debitOK = true;
+            }
 
-        public int GetNumero()
-        {
-
-            return 0;
-        }
-
-        public void RendCompte()
-        {
-
+            return debitOK;
         }
 
         /// 
         /// <param name="_autreCompte"></param>
-        public void Superieur(Compte _autreCompte)
+        public bool Superieur(Compte? _autreCompte)
         {
+            bool superieurOK = false;
 
+            if (_autreCompte != null)
+            {
+                superieurOK = this.solde > _autreCompte.solde;
+            }
+
+            return superieurOK;
         }
 
-        public string ToString()
+        public override string ToString()
         {
-
-            return "";
+            return "\nnumero : " + numero
+                + "\nnom : " + nom
+                + "\nsolde : " + solde
+                + "\ndecouvertAutorise : " + decouvertAutorise;
         }
 
         /// 
         /// <param name="_compteDestinataire"></param>
         /// <param name="_montant"></param>
-        public bool Transferer(Compte _compteDestinataire, int _montant)
+        public bool Transferer(Compte? _compteDestinataire, double _montant)
         {
+            bool transfertOK = false;
 
-            return false;
+            if (_compteDestinataire != null && Debiter(_montant))
+            {
+                _compteDestinataire.Crediter(_montant);
+                transfertOK = true;
+            }
+            return transfertOK;
         }
 
     }//end Compte
