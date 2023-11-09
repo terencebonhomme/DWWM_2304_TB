@@ -1,0 +1,42 @@
+:root {
+    --couleur-theme: blue;
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+}
+
+#cont {
+    border: 1px solid var(--couleur-theme);
+    width: 800px;
+    padding: 1em;
+}
+
+input {
+    margin-right: 1em;
+    border: 1px solid var(--couleur-theme);
+    width: 8em;
+}
+
+button {
+    color: var(--couleur-theme);
+    border: 1px solid var(--couleur-theme);
+}
+
+span {
+    font-weight: bold;
+    color: var(--couleur-theme);
+}
+
+h1 {
+    margin-top: 0;
+}
+
+#date-intervalle {
+    width: 12em;
+}
+
+#resultat-intervalle {
+    margin-top: 1em;
+}

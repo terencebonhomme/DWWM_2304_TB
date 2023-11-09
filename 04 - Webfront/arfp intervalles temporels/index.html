@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intervalles temporels</title>
+    <script type="module" src="assets/js/app.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div id="cont">
+        <h2>Gestion des dates et des intervalles</h2>
+        <form action="#">
+            <fieldset>
+                <label for="date-actuelle">Date actuelle :</label>
+                <input type="date" id="date-actuelle">
+                <label for="heure-actuelle">Heure actuelle :</label>
+                <input type="hour" id="heure-actuelle">
+                <button type="button" id="afficher-date">Afficher Date du jour</button>
+            </fieldset>
+        </form>
+        <hr>
+        <div id="resultat-aujourdhui"></div>
+        <hr>
+        <h2>Sélectionner une date et une heure :</h2>
+        <form action="#">
+            <label for="date-intervalle">Date</label>
+            <input type="datetime-local" id="date-intervalle">
+            <button type="button" id="afficher-date-intervalle">Calculer l'intervalle</button>
+        </form>
+        <div id="resultat-intervalle"></div>
+    </div>
+</body>
+
+</html>
