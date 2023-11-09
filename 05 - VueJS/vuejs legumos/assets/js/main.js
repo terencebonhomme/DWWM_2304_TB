@@ -49,7 +49,6 @@ const app = {
         }
         this.saveSale();
       } else {
-        console.log('local storage')
         this.loadSale();
       }
     },
@@ -80,8 +79,6 @@ const app = {
           this.sales.push(new Sale(item));
         }
       }
-
-      // console.log(this.sales)
     },
     editName(e) {
       console.log(e)
