@@ -1,0 +1,49 @@
+table {
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #bbb;
+    padding: 0.25em;
+}
+
+th {   
+    font-weight: bold;
+    text-align: start;
+}
+
+td {
+    border: 1px solid #bbb;
+}
+
+.action-button {
+    color: white;
+    padding:  0.5em;
+    border: none;
+    border-radius: 0.25em;
+    margin: 0.25em;
+}
+
+.action-button img, #sort-button img {
+    height: 1em;  
+    padding-right: 0.5em;  
+}
+
+#duplicate-button {
+    background-color: dodgerblue;
+    margin-left: 0.75em;
+}
+
+#delete-button {
+    background-color: crimson;
+    margin-right: 2em;
+}
+
+#sort-button {
+    background-color: white;
+}
+
+.table-last-line {
+    font-weight: bold;
+}
