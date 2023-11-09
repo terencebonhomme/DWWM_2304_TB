@@ -1,0 +1,25 @@
+h1 {
+    margin-top : 0;
+}
+
+span {
+    color: blue;
+    font-weight: bold;
+}
+
+input, button, #cont {
+    border: 1px solid blue;
+}
+
+button {
+    color: blue;
+}
+
+input, button {
+    margin-left: 1em;
+}
+
+#cont {
+    width: 800px;
+    padding: 1em;
+}
