@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legumos</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="module" src="./assets/js/main.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="cont">
+            <header>
+                <img src="./assets/img/legumos.jpg" alt="">
+                <nav>
+                    <div></div>
+                    <div><a href="sales.html" class="part">VENTES</a></div>
+                    <div><a href="new-sale.html"  class="part">NOUVELLE VENTE</a></div>
+                    <div></div>
+                    <div><a href="#" class="part">LÉGUMES</a></div>
+                    <div><a href="new-legume.html"  class="part">NOUVEAU LÉGUME</a></div>
+                    <div></div>
+                </nav>
+            </header>
+            <h1>Liste des légumes</h1>
+            <main>
+                <!-- <button @click="save">Save</button> -->
+                <!-- <button @click="load">Load</button> -->
+                <button @click="deleteData">Delete</button>
+                <button @click="exportJson">Export</button>
+                <div id="export-legumos" class="export"></div>
+                <div id="export-sales" class="export"></div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th @click="sortColumn">Nom</th>
+                            <th @click="sortColumn">Variété</th>
+                            <th @click="sortColumn">Couleur</th>
+                            <th @click="sortColumn">Durée Conservation</th>
+                            <th @click="sortColumn">Frais</th>
+                            <th @click="sortColumn">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="legumo of legumos">
+                            <td><input type="text" :value="legumo.Name" :disabled="false" @input="editName"></td>
+                            <td><input type="text" :value="legumo.Variety" :disabled="false"></td>
+                            <td><input type="text" :value="legumo.PrimaryColor" :disabled="false"></td>
+                            <td><input type="text" :value="legumo.LifeTime" :disabled="false"></td>
+                            <td><input type="text" :value="legumo.Fresh == 0 ? 'non' : 'oui'" :disabled="false"></td>
+                            <td>
+                                <a href="new-legume.html" @click="editLegumo" :id="'l' + legumo.Id">Éditer</a>
+                                &nbsp.&nbsp
+                                <a href="#" @click="deleteLegumo" :id="legumo.Id">Supprimer</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

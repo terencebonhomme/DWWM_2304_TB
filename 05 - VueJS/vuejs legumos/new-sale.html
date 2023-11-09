@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legumos</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="module" src="./assets/js/main.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="cont">
+            <header>
+                <img src="./assets/img/legumos.jpg" alt="">
+                <nav>
+                    <div></div>
+                    <div><a href="sales.html" class="part">VENTES</a></div>
+                    <div><a href="new-sale.html"  class="part">NOUVELLE VENTE</a></div>
+                    <div></div>
+                    <div><a href="index.html" class="part">LÉGUMES</a></div>
+                    <div><a href="#"  class="part">NOUVEAU LÉGUME</a></div>
+                    <div></div>
+                </nav>
+            </header>
+            <!-- <h1>Nouveau légume</h1> -->
+            <main>
+                <h1>Nouvelle vente</h1>
+                <form action="#" >
+                    <!-- <legend></legend> -->
+                    <fieldset id="form-sale">
+                        <label for="input-sale-name">Nom</label>
+                        <input type="text" id="input-sale-name">
+                        <br>
+                        <label for="input-sale-active">En cours</label>
+                        <input type="number" id="input-sale-active">
+                        <br>
+                        <label for="input-sale-date">Date</label>
+                        <input type="date" id="input-sale-date">
+                        <br>
+                        <label for="input-sale-unit-price">Prix unitaire</label>
+                        <input type="number" id="input-sale-unit-price">
+                        <br>
+                        <label for="input-sale-weight">Poids</label>
+                        <input type="number" id="input-sale-weight">
+                        <br>
+                        <label for="input-sale-variety">Varieté</label>
+                        <input type="text" id="input-sale-variety">
+                        <br>
+                        <label for="input-sale-vegetable-id">Id légume</label>
+                        <input type="number" id="input-sale-vegetable-id">
+                        <br>
+                    </fieldset>
+                    <button type="button" @click="addSale">Ajouter</button>
+                </form>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>
