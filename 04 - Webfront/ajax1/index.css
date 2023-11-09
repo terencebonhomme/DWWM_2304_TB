@@ -1,0 +1,124 @@
+table,
+th,
+td {
+
+    border-collapse: collapse;
+}
+
+table {
+    border: 2px solid #000;
+}
+
+th,
+td {
+    padding: 0.2em 1em;
+}
+
+th {
+    border: 1px solid #000;
+    background-color: #ccc;
+}
+
+td {
+    border-top: 1px solid #bbb;
+}
+
+tr:nth-child(even) {
+    background-color: #eee;
+}
+
+.card-cont {
+    background-color: rgb(8, 8, 8);
+    display: grid;
+    grid-template-columns: 7em 14em 7em;
+    grid-template-rows: repeat(4, 5em) 3em;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    margin: 1em 0;
+    width: 28em;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+.card-level {
+    grid-area: 1 / 1 / 2 / 2;
+    font-size: xxx-large;
+    text-align: center;
+    background-color: rgb(0, 82, 0);
+    padding-top: 0.3em;
+}
+
+.card-info {
+    grid-area: 1 / 2 / 2 / 4;
+    background-color: rgb(0, 82, 0);
+}
+
+.card-name {
+    font-size: xx-large;
+    padding-top: 0.5em;
+}
+
+.card-history {
+    font-size: small;
+}
+
+.card-img {
+    grid-area: 2 / 1 / 5 / 3;
+    background-color: rgb(42, 41, 41);
+    display: flex;
+    justify-content: center;
+}
+
+.card-img img {
+    width: 14em;
+    height: auto;
+}
+
+.card-power {
+    grid-area: 2 / 3 / 3 / 4;
+}
+
+.card-power-lib {
+    font-size: x-large;
+    text-align: center;
+    padding-top: 1em;
+}
+
+.card-power-stat {
+    font-size: x-large;
+    text-align: center;
+    color: rgb(119, 26, 240);
+}
+
+.card-attack {
+    grid-area: 3 / 3 / 4 / 4;
+}
+
+.card-attack-lib {
+    font-size: x-large;
+    text-align: center;
+    padding-top: 1em;
+}
+
+.card-attack-stat {
+    font-size: x-large;
+    text-align: center;
+    color: rgb(216, 52, 7);
+}
+
+.card-defense {
+    grid-area: 4 / 3 / 5 / 4;
+
+}
+
+.card-defense-lib {
+    font-size: x-large;
+    text-align: center;
+    padding-top: 1em;
+}
+
+.card-defense-stat {
+    color: rgb(15, 67, 163);
+    font-size: x-large;
+    text-align: center;
+}
