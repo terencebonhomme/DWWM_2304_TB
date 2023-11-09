@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boulangerie</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="module" src="./assets/js/main.js"></script>
+</head>
+
+<body>
+    <div id="app">        
+        <header>
+            <h1>Le Boulanger</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Or gagné</th>
+                        <th>Or dépensé</th>
+                        <th>Farine produite</th>
+                        <th>Baguettes produites</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ bakery.gold_gained.toFixed(2) }}</td>
+                        <td>{{ bakery.gold_spent.toFixed(2) }}</td>
+                        <td>{{ bakery.flour_produced }}</td>
+                        <td>{{ bakery.breads_produced }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </header>
+        
+        <div class="bakery-container container">
+            <div class="bakery-title title">
+                <h2>Boulangerie</h2>
+                <button type="button" @click="close" v-if="bakery.opened">
+                    Fermer la boulangerie
+                </button>
+                <button type="button" @click="open" v-else>
+                    Ouvrir la boulangerie
+                </button>
+            </div>
+            <div class="bakery-content content">
+                <img src="./assets/img/bakery-hero.png"></img>
+                <div>
+                    <div>
+                        Niveau {{ bakery.level }} ⚡
+                        <button @click="upgrade">➕</button>
+                        {{ bakery.upgrade_cost.toFixed(1) }} 💰
+                    </div>
+                    <div>
+                        Moulins {{ bakery.nb_mills }} 🏠
+                        <button @click="buyMill">➕</button>
+                        {{ bakery.mill_cost.toFixed(1) }} 💰
+                    </div>
+                    <div>Gold {{ bakery.gold.toFixed(1) }} </div>
+                    <div>Farine {{ bakery.flour }} 🥌 </div>
+                    <div>Baguettes {{ bakery.nb_breads }} 🥖</div>
+                </div>
+
+                
+            </div>
+            <!-- <div class="details"> -->
+            
+            <!-- </div> -->
+        </div>
+        <div class="command-container container">
+            <div class="command-title title">
+                <h2>Commandes</h2>
+            </div>
+            <div class="command-content container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>🚪</th>
+                            <th>🥖</th>
+                            <th>💰/🥖</th>
+                            <th>💰💰💰</th>
+                            <th>🕗</th>
+                            <th class="actions">⏰</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="command in commands">
+                            <td
+                                :class="{ 
+                                good_ready: command.unit_price >= earning && bakery.nb_breads >= command.nb_breads
+                                , good_wait: command.unit_price >= earning && this.bakery.nb_breads + command.time * this.bakery.level >= command.nb_breads}">
+                                {{ command.id }}</td>
+                            <td :class="{ enough_breads: bakery.nb_breads >= command.nb_breads}">{{ command.nb_breads }}
+                            </td>
+                            <td
+                                :class="{ good_earning: command.unit_price >= earning, bad_earning: command.unit_price < earning}">
+                                {{ command.unit_price.toFixed(2) }}</td>
+                            <td>{{ (command.nb_breads * command.unit_price).toFixed(2) }}</td>
+                            <!-- <td>{{ commandGold(command.id) }}</td> -->
+                            <td
+                                :class="{ jit: this.bakery.nb_breads + command.time * this.bakery.level >= command.nb_breads }">
+                                {{ command.time }}</td>
+                            <td>
+                                <div v-if="command.state == 'request'">
+                                    <button @click="accept(command.id)">O</button>
+                                    <button @click="cancel(command.id)">N</button>
+                                </div>
+                                <div v-else-if="command.state == 'waiting'">
+                                    En attente...
+                                </div>
+                                <div v-else-if="command.state == 'accepted'">
+                                    <!-- Progression -->
+                                    
+                                    <button @click="complete(command.id)">✅</button>
+                                    <progress class="progress-bar" :max="command.nb_breads"
+                                        :value="this.bakery.nb_breads"></progress>
+                                </div>
+                                <div v-else-if="command.state == 'canceled'">Commande annulée</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="log-container container">
+            <div class="log-title title">
+                <h2>Log</h2>
+            </div>
+            <div class="log-content content">
+                <p v-for="log in logs">{{ log.date }}: {{ log.description }}</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

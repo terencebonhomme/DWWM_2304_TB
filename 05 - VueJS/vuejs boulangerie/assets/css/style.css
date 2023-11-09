@@ -1,0 +1,223 @@
+:root {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;    
+}
+
+* {
+    top: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    width: 70%;
+    margin: 0 auto;
+}
+
+body {
+    background-color: dimgray;
+}
+
+h1 {
+    margin-right: 2em;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+td.good_earning {
+    background-color: rgba(99, 255, 56, 0.701);
+}
+
+td.bad_earning {
+    background-color: tomato;
+}
+
+td.enough_breads {
+    background-color: cornflowerblue;
+}
+
+td.jit {
+    background-color: orange;
+}
+
+td.good_wait {
+    background-color:darkorange
+}
+
+td.good_ready {
+    background-color: aqua;
+}
+
+progress {
+    /* color: aqua; */
+    background-color: green;
+    /* border-radius: none; */
+}
+
+.container {
+    /* border: 1px solid black;
+    background-color: grey;
+    margin: 1em; */
+}
+
+.content{
+
+}
+
+header {
+    display: flex;
+    padding: 0 1em;
+    color: white;
+}
+
+header button {
+    background-color: dimgray;
+}
+
+header table, header td, header th{
+    border: none;
+}
+
+header table {
+    width: 65%;
+}
+
+header th {
+    background-color: rgb(66, 66, 66);
+}
+
+header td {
+    background-color: grey;
+}
+
+header th, header td {
+    padding: 0.5em 0.5em;
+    text-align: center;
+}
+
+.bakery-container {
+    border: 1px solid black;
+    background-color: grey;
+    margin: 1em;
+}
+
+.bakery-title {
+    background-color: rgb(66, 66, 66);
+    color: white;
+    border-bottom: 1px solid black;
+    display: flex;
+}
+
+.bakery-title h2 {
+    margin-left: 0.5em;
+}
+
+.bakery-title button {
+    margin-left: 0.5em;
+}
+
+
+.bakery-content {
+    padding: 0.5em 1em;
+    color: white;
+    display: flex;
+}
+
+.bakery-content img {
+    width: 20em;
+    margin-right: 1em;
+}
+
+.bakery-content button {
+    border-radius: 20px;
+    border: none;
+    margin-left: 1em;
+}
+
+.command-container{
+    border: 1px solid black;
+    background-color: grey;
+    margin: 1em;
+}
+
+.command-title {
+    background-color: rgb(66, 66, 66);
+    color: white;
+    border-bottom: 1px solid black;
+}
+
+.command-title h2 {
+    margin-left: 0.5em;
+}
+
+.command-content {
+    padding: 0.5em 1em;
+    color: white;
+}
+
+.command-content tr:nth-child(2) {
+    background-color: rgb(95, 99, 96);
+}
+
+.command-content tr:nth-child(even) {
+    background-color: rgb(70, 70, 70);
+}
+
+.command-content table td{
+    padding: 0.5em;
+}
+
+.command-content button {
+    /* padding: 0.25em; */
+    background-color: rgb(70, 70, 70);
+    color: white;
+    margin-right: 0.5em;
+    padding: 0 0.5em;
+}
+
+.command-content table th {
+    text-align: start;
+    background-color: rgb(40, 41, 40);
+    /* color: white; */
+}
+
+/* .command-cont table th:last-child {
+    width: 10em;
+} */
+
+table .actions {
+    width: 100%;
+}
+
+.log-container {    
+    border: 1px solid black;
+    height: fit-content;
+    background-color: grey;
+    margin: 1em;    
+}
+
+.log-title {
+    background-color: rgb(66, 66, 66);
+    color: white;
+    border-bottom: 1px solid black;
+}
+
+.log-title h2 {
+    margin-left: 0.5em;
+}
+
+.log-content {
+    padding: 0.5em 1em;
+    color: white;
+}
+
+progress {
+    margin-right: 0.5em;
+    border: 1px solid black;
+    /* border-radius: 30px;    */
+}
+
+
