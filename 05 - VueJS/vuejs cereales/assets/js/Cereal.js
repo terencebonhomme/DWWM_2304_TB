@@ -23,10 +23,6 @@ class Cereal {
             return 'E';
         }
     }
-
-    // deleteCereal(e) {
-    //     this.cereals = this.cereals.filter(c => c.id != e.target.id)
-    // }
 }
 
 export { Cereal }

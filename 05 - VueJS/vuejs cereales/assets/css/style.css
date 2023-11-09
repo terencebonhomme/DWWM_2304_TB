@@ -34,7 +34,7 @@ table {
     border-collapse: collapse;
 }
 
-button {
+.last-column button {
     color: #CC0000CC;
     background-color: #444;
     border: none;
@@ -67,6 +67,7 @@ button {
 th {
     text-align: start;
     padding: 0.2em;
+    cursor: pointer;
 }
 
 td {
@@ -83,10 +84,12 @@ td {
     width: 5px;
     color: yellow;
     width: 2em;
+    background-color: #333;
 }
 
 .name-column {
     text-align: start;
+    padding-left: 0.5em;
 }
 
 .calories-column {
@@ -94,7 +97,7 @@ td {
 }
 
 .last-column {
-
+    background-color: #333;
 }
 
 .filter-cont {
@@ -145,18 +148,20 @@ td {
     margin-left: 0.3em;
     margin-right: 2em;
     padding: 0 0.5em;
-    /* font-size: larger; */
 }
 
 #filter-category-cont select {
     font-size: large;
 }
 
+.row {
+    background-color: #222;
+}
+
 .row:hover {
     background-color: #664;
     color: white;
     position: relative;
-    z-index: 1;
 }
 
 #total {
@@ -165,4 +170,9 @@ td {
 
 #average {
     text-align: start;
+}
+
+.btn-json {
+    padding: 0.25em 0.5em;
+    margin-right: 0.5em;
 }

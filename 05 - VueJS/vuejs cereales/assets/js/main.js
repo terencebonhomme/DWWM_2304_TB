@@ -8,10 +8,9 @@ const app = {
     return {
       cereals: [],
       dataSource: [],
+      nutriscoreList: [],
       selCategory: '',
       checkedNutriments: [],
-      testCheck: false,
-      testVar: 'ok',
       total: '',
       average: '',
       searchedName: '',
@@ -19,21 +18,9 @@ const app = {
     }
   },
   async mounted() {
-    let json = await Db.fetchJson(apiUrl);
+    if (localStorage.getItem("cereals") == null) {
 
-    for (let item of json) {
-      let c = new Cereal(item);
-      this.cereals.push(c);
-      this.dataSource.push(c);
-    }
-
-    this.updateLastRow();
-  },
-  methods: {
-    async fetch() {
       let json = await Db.fetchJson(apiUrl);
-
-      this.cereals = [];
 
       for (let item of json) {
         let c = new Cereal(item);
@@ -41,45 +28,55 @@ const app = {
         this.dataSource.push(c);
       }
 
-      this.updateLastRow();
-    },
+      this.saveLocalStorage();
+    } else {
+      this.loadLocalStorage();
+    }
+
+    this.updateLastRow();
+
+    this.listNutriscore()
+  },
+  methods: {
     updateLastRow() {
       this.total = `${this.cereals.length} eléments`;
-      this.average = `Moyenne calories ${Math.round(this.averageCalories())}`
+      this.average = `Moyenne calories ${Math.round(this.averageCalories())}`;
     },
     deleteCereal(e) {
-      this.cereals = this.cereals.filter(c => c.id != e.target.id)
+      this.cereals = this.cereals.filter(c => c.id != e.target.id);
+      this.updateLastRow();
+      this.saveLocalStorage();
     },
-    async searchCereal(e) {
-      this.cereals = [...this.dataSource];
+    searchCereal() {
       this.cereals = this.cereals.filter(c => c.name.toLowerCase().includes(this.searchedName.toLowerCase()));
     },
-    filterCategory() {
+    filterData() {
       this.cereals = [...this.dataSource];
 
+      this.filterCategory();
+      this.filterNutri();
+      this.searchCereal();
+
+      this.updateLastRow();
+    },
+    filterCategory() {
       if (this.selCategory == 'without-sugar') {
-        this.cereals = this.cereals.filter(c => c.sugars < 1)
+        this.cereals = this.cereals.filter(c => c.sugars < 1 && c.sugars != -1)
       } else if (this.selCategory == 'poor-salt') {
         this.cereals = this.cereals.filter(c => c.sodium < 50)
       } else if (this.selCategory == 'boost') {
         this.cereals = this.cereals.filter(c => c.vitamins >= 25 && c.fiber >= 10)
       }
-      this.updateLastRow();
     },
     filterNutri() {
-      this.cereals = [...this.dataSource]
-
       if (this.checkedNutriments.length > 0) {
         this.cereals = this.cereals.filter(c => this.checkedNutriments.includes(c.nutriscore));
-        this.updateLastRow();
       }
     },
     averageCalories() {
       let sumCalory = 0;
 
-      this.cereals.forEach(cereal => {
-        sumCalory += cereal.calories;
-      });
+      sumCalory = this.cereals.reduce((a, b) => a + b.calories, 0);
 
       return sumCalory / this.cereals.length;
     },
@@ -99,14 +96,6 @@ const app = {
         'ns': 'nutriscore'
       }
       let clickedTitle = e.target.textContent.toLowerCase();
-
-      // convertir les évaluations qui ne sont pas considérées comme des number en float
-
-      if (clickedTitle == 'évaluation') {
-        this.cereals.forEach(cereal => {
-          cereal.rating = parseFloat(cereal.rating)
-        });
-      }
 
       if (this.cereals.length > 0) {
 
@@ -151,9 +140,59 @@ const app = {
           }
         }
       }
+    },
+    listNutriscore() {
+      for (let cereal of this.cereals) {
+        if (!this.nutriscoreList.includes(cereal.nutriscore)) {
+          this.nutriscoreList.push(cereal.nutriscore)
+        }
+      }
+
+      this.nutriscoreList.sort();
+    },
+    saveLocalStorage() {
+      localStorage.setItem("cereals", JSON.stringify(this.cereals));
+    },
+    loadLocalStorage() {
+      let cerealsJson = JSON.parse(localStorage.getItem("cereals"));
+
+      if (cerealsJson) {
+        for (let item of cerealsJson) {
+          let c = new Cereal(item)
+          this.cereals.push(c);
+          this.dataSource.push(c);
+        }
+      }
+    },
+    async reset() {
+      this.cereals = [];
+      this.dataSource = [];
+
+      let json = await Db.fetchJson(apiUrl);
+
+      for (let item of json) {
+        let c = new Cereal(item);
+        this.cereals.push(c);
+        this.dataSource.push(c);
+      }
+
+      this.updateLastRow();
+
+      this.saveLocalStorage();
+    },
+    exportJson() {
+      this.createDownloadJson(JSON.stringify(this.cereals), 'cereals');
+    },
+    createDownloadJson(json, filename) {
+      var dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(json);
+      var downloadAnchorNode = document.createElement('a');
+      downloadAnchorNode.setAttribute('href', dataStr);
+      downloadAnchorNode.setAttribute('download', filename + '.json');
+      document.body.appendChild(downloadAnchorNode);
+      downloadAnchorNode.click();
+      downloadAnchorNode.remove();
     }
   }
 }
 
 Vue.createApp(app).mount('#app');
-
