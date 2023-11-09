@@ -1,8 +1,5 @@
 class Bakery {
 
-    // static bakery_level;
-    // static nb_mills;
-
     /**
      * Constructeur
      */
@@ -19,15 +16,6 @@ class Bakery {
         this.gold_spent = 0;
         this.flour_produced = 0;
         this.breads_produced = 0;
-        // this.commands = [
-        //     {
-        //         id: 1,
-        //         nb_breads: 11,
-        //         unit_price: 0.26,
-        //         time: 6,
-        //         state: 'request'
-        //     }
-        // ]
     }
 }
 

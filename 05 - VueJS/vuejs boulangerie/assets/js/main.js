@@ -19,9 +19,6 @@ const app = {
     inTime(){
       this.bakery.nb_breads + this.bakery.time * this.bakery.level
     }
-    // commandGold(id){
-    //   return this.commands[id - 1].unit_price * this.commands[id - 1].nb_breads;
-    // }
   },
   mounted() {
     this.initCommands();
@@ -65,17 +62,12 @@ const app = {
       this.bakery.opened = false;
     },
     accept(id) {
-      // console.log(this.commands)
-      // console.log(this.commands[id - 1])
-      // console.log('---')
       this.commands[id - 1].state = 'accepted';
 
       let eventAccept = {};
       eventAccept.date = new Date().toLocaleTimeString('fr');
       eventAccept.description = `La commande ${this.commands[id - 1].id} a été acceptée`;
-      this.logs.reverse();
-      this.logs.push(eventAccept);  
-      this.logs.reverse();
+      this.logs.unshift(eventAccept);  
       if(this.logs.length == 21){
         this.logs.pop();
       }
@@ -95,8 +87,6 @@ const app = {
             setTimeout(() => {
               this.createCommand(this.commands[id - 1]);
               clearInterval(inter)
-              // this.checkCommand(this.commands[id - 1]);
-
             }, 3000);
           }
         }, 1000);
@@ -146,43 +136,16 @@ const app = {
       command.time = 0;
 
       setTimeout(() => {
-        // for (let i = 0; i < 10; i++) {
         this.createCommand(command, id);
-        // }
       }, 3000);
     },
     createCommand(command, id) {
       command.state = 'request';
-      // command.id = id;
       command.nb_breads = Math.round(Math.random() * ((30 * this.bakery.level) - 5) + 5);
       command.unit_price = (Math.random() * ((30 * this.bakery.level / 100) - (this.bakery.level / 100)) + (this.bakery.level / 100)) * 5;
       command.time = Math.round(Math.random() * (18 - 3) + 3);
       console.log(command)
     },
-    // checkCommand(id) {
-    //   // console.log(this.commands)
-    //   if (this.commands[id - 1].time > 0) {
-    //     setTimeout(() => {
-    //       this.commands[id - 1].time--;
-
-    //       if (this.bakery.flour > 0) {
-    //         while (this.commands[id - 1].nb_breads > 0) {
-    //           this.commands[id - 1].flour--;
-    //           this.commands[id - 1].nb_breads--;
-    //         }
-    //       }
-    //     }, 1000);
-    //   }
-
-    //   if (this.commands[id - 1].nb_breads == 0) {
-    //     this.bakery.gold += this.commands[id - 1].nb_breads * this.commands[id - 1].unit_price;
-    //     this.resetCommand(this.commands[id - 1], id);
-    //   }
-
-    //   if (this.commands[id - 1].time == 0) {
-    //     this.resetCommand(this.commands[id - 1], id);
-    //   }
-    // },
     complete(id) {
       if (this.bakery.nb_breads >= this.commands[id - 1].nb_breads) {
         this.bakery.nb_breads -= this.commands[id - 1].nb_breads;
@@ -192,9 +155,7 @@ const app = {
         let eventDelivery = {};
         eventDelivery.date = new Date().toLocaleTimeString('fr');
         eventDelivery.description = `La boulangerie a livré ${this.commands[id - 1].nb_breads} baguettes`;
-        this.logs.reverse();
-        this.logs.push(eventDelivery);  
-        this.logs.reverse();
+        this.logs.unshift(eventDelivery);  
         if(this.logs.length == 21){
           this.logs.pop();
         }
@@ -202,9 +163,7 @@ const app = {
         let eventGain = {};
         eventGain.date = new Date().toLocaleTimeString('fr');
         eventGain.description = `La boulangerie a gagné ${(this.commands[id - 1].nb_breads * this.commands[id - 1].unit_price).toFixed(2)} Or`;
-        this.logs.reverse();
-        this.logs.push(eventGain); 
-        this.logs.reverse();
+        this.logs.unshift(eventGain); 
         if(this.logs.length == 21){
           this.logs.pop();
         }
@@ -212,9 +171,6 @@ const app = {
         this.resetCommand(this.commands[id - 1], id);
       }
     },
-    // addLogEntry(){
-
-    // }
   }
 }
 
