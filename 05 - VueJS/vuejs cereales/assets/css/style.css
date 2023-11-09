@@ -1,0 +1,168 @@
+* {
+    top: 0;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: black;
+    color: #FFFFFFCC;
+    font-size: larger;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+legend {
+    margin-left: 0.75em;
+}
+
+h1 {
+    color: yellowgreen;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    width: 40%;
+    text-align: center;
+    font-size: 48px;
+    padding: 0.5em;
+}
+
+header {
+    display: flex;
+}
+
+table {
+    margin-top: 2em;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+button {
+    color: #CC0000CC;
+    background-color: #444;
+    border: none;
+}
+
+.nut-a {
+    background-color: darkgreen;
+}
+
+.nut-b {
+    background-color: #009900CC;
+}
+
+.nut-c {
+    background-color: #CCCC00CC;
+}
+
+.nut-d {
+    background-color: #CC6600CC;
+}
+
+.nut-e {
+    background-color: #CC0000CC;
+}
+
+.row {
+    height: 2em;
+}
+
+th {
+    text-align: start;
+    padding: 0.2em;
+}
+
+td {
+    text-align: center;
+}
+
+
+.titles-row {
+    background-color: #444;
+    color: yellowgreen;
+}
+
+.id-column {
+    width: 5px;
+    color: yellow;
+    width: 2em;
+}
+
+.name-column {
+    text-align: start;
+}
+
+.calories-column {
+    width: 0.5em;
+}
+
+.last-column {
+
+}
+
+.filter-cont {
+    border: 1px solid #FFFFFFCC;
+    border-radius: 5px; 
+}
+
+#search {
+    height: 3em;
+    width: 20em;
+    background-color: #333;
+    border: none;
+    font-size: large;
+    width: 100%;
+    color: #FFFFFFCC;
+}
+
+#search:focus{
+    outline: none;
+}
+
+#filter-name-cont {
+    background-color: #333;
+    padding: 0.5em;
+    width: 20%;
+}
+
+#filter-nutriscore-cont {
+    height: 3em;
+    margin-left: 0.5em;
+    padding: 0 0.5em;
+}
+
+#filter-nutriscore-cont label {
+    margin: 0 0.5em;
+}
+
+#filter-main-cont {
+    display: flex;
+    flex-direction: row;   
+    padding: 0.5em;   
+    width: 32%;
+    margin-left: 0.2em;
+}
+
+#filter-category-cont {
+    height: 3em;
+    margin-left: 0.3em;
+    margin-right: 2em;
+    padding: 0 0.5em;
+    /* font-size: larger; */
+}
+
+#filter-category-cont select {
+    font-size: large;
+}
+
+.row:hover {
+    background-color: #664;
+    color: white;
+    position: relative;
+    z-index: 1;
+}
+
+#total {
+    text-align: start;
+}
+
+#average {
+    text-align: start;
+}

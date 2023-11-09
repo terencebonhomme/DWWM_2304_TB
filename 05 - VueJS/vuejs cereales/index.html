@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Céréales</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="module" src="./assets/js/main.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <h1>Cereals</h1>
+            <!-- <div id="cont"> -->            
+                <fieldset id="filter-name-cont" class="filter-cont">
+                    <legend for="search">Rechercher</legend>
+                    <input type="search" id="search" v-model="searchedName" @input="searchCereal"
+                        placeholder="Nom du céréale">
+                </fieldset>
+
+                <fieldset id="filter-main-cont" class="filter-cont">
+
+                    <legend for="filter">Filtrer</legend>
+
+                    <fieldset id="filter-nutriscore-cont" class="filter-cont">
+                        <legend for="nutriscore">Nutriscore</legend>
+
+                        <label for="nutriscore-a">A</label>
+                        <input type="checkbox" id="nutriscore-a" value="A" v-model="checkedNutriments"
+                            @change="filterNutri">
+                        
+                        <label for="nutriscore-b">B</label>
+                        <input type="checkbox" id="nutriscore-b" value="B" v-model="checkedNutriments"
+                            @change="filterNutri">
+                        
+                        <label for="nutriscore-c">C</label>
+                        <input type="checkbox" id="nutriscore-c" value="C" v-model="checkedNutriments"
+                            @change="filterNutri">
+                        
+                        <label for="nutriscore-d">D</label>
+                        <input type="checkbox" id="nutriscore-d" value="D" v-model="checkedNutriments"
+                            @change="filterNutri">
+                        
+                        <label for="nutriscore-e">E</label>
+                        <input type="checkbox" id="nutriscore-e" value="E" v-model="checkedNutriments"
+                            @change="filterNutri">
+                        
+                    </fieldset>
+
+                    <fieldset id="filter-category-cont" class="filter-cont">
+                        <legend for="category">Catégorie</legend>
+                        <select id="category" v-model="selCategory" @change="filterCategory">
+                            <option value="all">Tous</option>
+                            <option value="without-sugar">Sans sucre</option>
+                            <option value="poor-salt">Pauvre en Sel</option>
+                            <option value="boost">Boost</option>
+                        </select>
+                    </fieldset>
+                </fieldset>
+                </header>
+            </span>
+            <!-- </div> -->
+        </header>
+        <table>
+            <thead>
+                <tr class="titles-row">
+                    <th id="title-id" @click="sortColumn">ID</th>
+                    <th @click="sortColumn">NOM</th>
+                    <th @click="sortColumn">CALORIES</th>
+                    <th @click="sortColumn">PROTEÏNES</th>
+                    <th @click="sortColumn">SEL</th>
+                    <th @click="sortColumn">FIBRES</th>
+                    <th @click="sortColumn">GLUCIDES</th>
+                    <th @click="sortColumn">SUCRE</th>
+                    <th @click="sortColumn">POTASSIUM</th>
+                    <th @click="sortColumn">VITAMINES</th>
+                    <th @click="sortColumn">ÉVALUATION</th>
+                    <th @click="sortColumn">NS</th>
+                    <th @click="sortColumn">DEL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="cereal of cereals" class="row">
+                    <td class="id-column">{{ cereal.id }}</td>
+                    <td class="name-column">{{ cereal.name }}</td>
+                    <td class="calories-column">{{ cereal.calories }}</td>
+                    <td>{{ cereal.protein }}</td>
+                    <td>{{ cereal.sodium }}</td>
+                    <td>{{ cereal.fiber }}</td>
+                    <td>{{ cereal.carbo }}</td>
+                    <td>{{ cereal.sugars }}</td>
+                    <td>{{ cereal.potass }}</td>
+                    <td>{{ cereal.vitamins }}</td>
+                    <td>{{ cereal.rating }}</td>
+
+                    <td v-if="cereal.nutriscore == 'A'" class="nut-a">{{ cereal.nutriscore }}</td>
+                    <td v-else-if="cereal.nutriscore == 'B'" class="nut-b">{{ cereal.nutriscore }}</td>
+                    <td v-else-if="cereal.nutriscore == 'C'" class="nut-c">{{ cereal.nutriscore }}</td>
+                    <td v-else-if="cereal.nutriscore == 'D'" class="nut-d">{{ cereal.nutriscore }}</td>
+                    <td v-else class="nut-e">{{ cereal.nutriscore }}</td>
+
+                    <td class="last-column"><button @click="deleteCereal" :id="cereal.id">X</button></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td id="total">{{ total }}</td>
+                    <td id="average">{{ average }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
